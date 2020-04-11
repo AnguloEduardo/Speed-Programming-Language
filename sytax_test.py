@@ -1,61 +1,94 @@
 import ply.lex as lex
 import ply.yacc as yacc
+import re
+import codecs
+import os
+import sys
 
 
-tokens = ('program', 'dim', 'as', 'coma', 'semicolon', 'end',
-	'sub procedure', 'endsub', 'let', 'equal', 'print', 
-	'cls', 'if', 'then', 'else', 'endif', 'while', 'whend',
-	'do', 'loop until', 'endo', 'for', 'to', 'next', 'gosub',
-	'word', 'float', 'array', 'matrix', 'cube', 'lparent',
-	'rparent', 'sum', 'rest', 'multi', 'div', 'greater than', 
-	'lesser than', 'greater equal', 'lesser equal', 'nonequal')
+tokens = [ 'ID', 'NUMBER', 'COMMA', 'SEMMICOLON', 'LPARENT', 
+		   'RPARENT', 'ASSIGN', 'PLUS', 'MINUS', 'TIMES', 
+		   'DIVIDE', 'NE', 'LT', 'LTE', 'GT', 'GTE']
 
-t_ignore = r' '
+reserved = {
+		'program':'PROGRAM', 
+		'dim':'DIM', 
+		'as':'AS', 
+		'end':'END',
+		'subprocedure':'SUBPROCEDURE', 
+		'endsub':'ENDSUB', 
+		'let':'LET',
+		'print':'PRINT', 
+		'cls':'CLS', 
+		'if':'IF', 
+		'then':'THEN', 
+		'else':'ELSE', 
+		'endif':'ENDIF', 
+		'while':'WHILE', 
+		'whend':'WHEND',
+		'do':'DO', 
+		'loopunitl':'LOOPUNTIL', 
+		'endo':'ENDO', 
+		'for':'FOR', 
+		'to':'TO', 
+		'next':'NEXT', 
+		'gosub':'GOSUB',
+		'word':'WORD', 
+		'float':'FLOAT', 
+		'array':'ARRAY', 
+		'matrix':'MATRIX', 
+		'cube':'CUBE'
+}
 
-def t_program(t):
-	r'program'
-	t.type = 'program'
+tokens = tokens+list(reserved.values())
+
+t_ignore = '\t\r '
+t_PLUS = r'\+'
+t_MINUS = r'\-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_ASSIGN = r'='
+t_NE = '<>'
+t_LT = '<'
+t_LTE = '<='
+t_GT = '>'
+t_GTE = '>='
+t_LPARENT = '\('
+t_RPARENT = '\)'
+t_COMMA = ','
+t_SEMMICOLON = ';'
+
+def t_ID(t):
+	r'[a-zA-Z_][a-zA-Z_0-9]*'
+	t.type = reserved.get(t.value,'ID')
 	return t
 
-def t_que(t):
-	r'que'
-	t.type = 'que'
-	return t
+def t_newline(t):
+	r'\n+'
+	t.lexer.lineno += len(t.value)
 
-def t_tal(t):
-	r'tal'
-	t.type = 'tal'
-	return t
+def t_COMMENT(t):
+	r'\#.*'
+	pass
 
-def t_coma(t):
-	r'\,'
-	t.type = 'coma'
+def t_NUMBER(t):
+	r'\d+'
 	return t
 
 def t_error(t):
-	print("Invalid syntax")
+	print ("Illegal character ", t.value[0])
 	t.lexer.skip(1)
 
-lex = lex.lex()
+test = os.getcwd()+"\\test\\"+"prueba1.py"
+fp = codecs.open(test,"r","utf-8")
+cadena = fp.read()
+fp.close()
 
-def p_S(p):
-	'S : X que tal'
-	print("Correct syntax\n")
+lexer = lex.lex()
 
-def p_X(p):
-	'X : X coma hola'
-
-def p_Y(p):
-	'X : hola'
-
-def p_error(p):
-	print("Incorrect syntax\n")
-
-parser = yacc.yacc()
+lexer.input(cadena)
 
 while True:
-    try:
-        s = input('')
-    except EOFError:
-        break
-    parser.parse(s)
+	tok = lexer.token()
+	if not tok : break
+	print (tok)

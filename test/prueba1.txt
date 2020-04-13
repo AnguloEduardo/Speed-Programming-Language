@@ -1,0 +1,22 @@
+program main
+
+dim n, m, n, b, t, y as word;
+dim a as float;
+dim b, g, r, t as array[2];
+
+
+subprocedure area
+	let n = 4;
+	let n = (4);
+	let n = 5 + 2*(3 + 5*5 + 7*(8 + 5+ 3*5 + 1)* 9)*2 + (4+3)
+
+endsub;
+
+let r = 3;
+cls;
+
+if ((a>b) and (c<=d)) then
+	cls
+endif
+
+end

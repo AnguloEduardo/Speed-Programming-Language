@@ -55,18 +55,18 @@ def p_SP(p):
 
 def p_X(p):
 	'''
-	X : S R
+	X : S SEMMICOLON X
 	|
 	'''
 	print("X")
-
+'''
 def p_R(p):
-	'''
+
 	R : SEMMICOLON S R
 	|
-	'''
+	
 	print("R")
-
+'''
 def p_S(p):
 	'''
 	S : LET E ASSIGN E

@@ -89,3 +89,15 @@ def t_error(t):
 	t.lexer.skip(1)
 
 lexer = lex.lex()
+
+test = os.getcwd()+"\\test\\prueba2.txt"
+fp = codecs.open(test,"r","utf-8")
+cadena = fp.read()
+fp.close()
+
+lex.input(cadena)
+
+while True:
+	tok = lex.token()
+	if not tok : break
+	print (tok)

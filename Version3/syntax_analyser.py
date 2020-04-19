@@ -40,7 +40,7 @@ reserved = {'program':'PROGRAM',
 
 tokens = tokens+list(reserved.values())
 
-t_ignore = '\t\r '
+t_ignore = '\t\r\v\f '
 t_PLUS = r'\+'
 t_MINUS = r'\-'
 t_TIMES = r'\*'
@@ -69,7 +69,7 @@ def t_ID(t):
 	return t
 
 def t_STRING(t):
-	r'["][a-zA-Z 0-9:!@#$%^&*()-+=/?<>,]+["]'
+	r'["][\\a-zA-Z 0-9:!@#$%^&*()\-+=/?<>,~`|ñ]+["]'
 	return t
 
 def t_newline(t):

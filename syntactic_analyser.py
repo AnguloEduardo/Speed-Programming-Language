@@ -4,7 +4,7 @@ import codecs
 import re
 from syntax_analyser import tokens
 from sys import stdin
-# Problema con las comas y con los strings
+
 precendence = (
 	('right','ASSING'),
 	('left','NE'),
@@ -19,14 +19,12 @@ def p_PROGRAM(p):
 	'''
 	program : PROGRAM ID V SP X END
 	'''
-	print("program")
 
 def p_V(p):
 	'''
 	V : DIM IDLIST AS TIPO SEMMICOLON V
 	|
 	'''
-	print("V")
 
 def p_IDLIST(P):
 	'''
@@ -34,7 +32,6 @@ def p_IDLIST(P):
 	| IDLIST COMMA ID
 	|
 	'''
-	print("IDLIST")
 
 def p_TIPO(p):
 	'''
@@ -44,34 +41,23 @@ def p_TIPO(p):
 	| MATRIX LBRACKET E RBRACKET LBRACKET E RBRACKET
 	| CUBE LBRACKET E RBRACKET LBRACKET E RBRACKET LBRACKET E RBRACKET
 	'''
-	print("TIPO")
 
 def p_SP(p):
 	'''
 	SP : SUBPROCEDURE ID V X ENDSUB SEMMICOLON SP
 	|
 	'''
-	print("SP")
-
 def p_X(p):
 	'''
 	X : S SEMMICOLON X
 	|
 	'''
-	print("X")
-'''
-def p_R(p):
 
-	R : SEMMICOLON S R
-	|
-	
-	print("R")
-'''
 def p_S(p):
 	'''
 	S : LET E ASSIGN E
 	| PRINT Q
-	| INPUT H GTGT U
+	| INPUT TEXT GTGT U
 	| CLS
 	| IF EL THEN X ELSE1 ENDIF
 	| WHILE EL X WHEND
@@ -79,7 +65,6 @@ def p_S(p):
 	| FOR O TO E X NEXT
 	| GOSUB ID
 	'''
-	print("S")
 
 def p_O(p):
 	'''
@@ -100,26 +85,25 @@ def p_Q(p):
 	Q : LPARENT U RPARENT
 	| TEXT
 	'''
-	print("Q")
-
-def p_H(p):
-	'''
-	H : TEXT
-	|
-	'''
 
 def p_TEXT(p):
 	'''
-    TEXT : LPARENT STRING RPARENT
+    TEXT : LPARENT STRING H RPARENT
+    |
     '''
-    #print("TEXT")
+
+def p_H(p):
+	'''
+	H : PLUS STRING H
+	| PLUS U H
+	|
+	'''
 
 def p_ELSE1(p):
 	'''
 	ELSE1 : ELSE X
 	|
 	'''
-	print("ELSE1")
 
 def p_E(p):
 	'''
@@ -127,7 +111,6 @@ def p_E(p):
 	| E MINUS T
 	| T
 	'''
-	print("E")
 
 def p_T(p):
 	'''
@@ -135,7 +118,6 @@ def p_T(p):
 	| T DIVIDE F
 	| F
 	'''
-	print("T")
 
 def p_F(p):
 	'''
@@ -143,7 +125,6 @@ def p_F(p):
 	| U
 	| LPARENT E RPARENT
 	'''
-	print("F")
 
 def p_EL(p):
 	'''
@@ -151,21 +132,18 @@ def p_EL(p):
 	| NOT TL
 	| TL
 	'''
-	print("EL")
 
 def p_TL(p):
 	'''
 	TL : TL AND FL
 	| FL
 	'''
-	print("TL")
 
 def p_FL(p):
 	'''
 	FL : K OPREL K
 	| LPARENT EL RPARENT
 	'''
-	print("FL")
 
 def p_OPREL(p):
 	'''
@@ -176,7 +154,6 @@ def p_OPREL(p):
 	| NE
 	| EQUAL
 	'''
-	print("OPREL")
 
 def p_K(p):
 	'''

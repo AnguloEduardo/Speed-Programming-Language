@@ -29,8 +29,8 @@ class SymbolTable(object):
         self._init_builtins()
 
     def _init_builtins(self):
-        self.define(BuiltinTypeSymbol('INTEGER'))
-        self.define(BuiltinTypeSymbol('REAL'))
+        self.define(BuiltinTypeSymbol('WORD'))
+        self.define(BuiltinTypeSymbol('FLOAT'))
 
     def __str__(self):
         s = 'Symbols: {symbols}'.format(

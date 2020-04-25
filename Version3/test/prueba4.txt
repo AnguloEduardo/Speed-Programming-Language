@@ -1,0 +1,8 @@
+program main
+
+dim a, b, c, d as word;
+
+if (a>b) then
+endif;
+
+end

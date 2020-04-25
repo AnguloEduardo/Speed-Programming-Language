@@ -1,8 +1,8 @@
 program main
 
-dim n, m, n, b, t, y as word;
+dim n, m, t, y as word;
 dim a as float;
-dim b, g, r, t as array[2];
+dim b, g, r, c, d as array[2];
 
 
 subprocedure area

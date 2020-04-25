@@ -3,7 +3,11 @@ import os
 import codecs
 import re
 from syntax_analyser import tokens
+from symbolTable import *
 from sys import stdin
+
+word = Symbol("Word", "WORD")
+table = SymbolTable()
 
 precendence = (
 	('right','ASSING'),
@@ -26,11 +30,21 @@ def p_V(p):
 	|
 	'''
 
-def p_IDLIST(P):
+def p_IDLIST(p):
 	'''
 	IDLIST : ID
-	| IDLIST COMMA ID
-	|
+	'''
+	SymbolTable.define(p[1],word)
+
+def p_IDLIST2(p):
+	'''
+	IDLIST : IDLIST COMMA ID
+	'''
+	SymbolTable.define(p[3],word)
+
+def p_IDLIST_EMPTY(p):
+	'''
+	IDLIST :
 	'''
 
 def p_TIPO(p):

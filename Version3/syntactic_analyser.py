@@ -110,6 +110,7 @@ def p_Z(p):
 	Z : NUMBER
 	| ID
 	'''
+
 def p_SP(p):
 	'''
 	SP : SUBPROCEDURE ID X ENDSUB SEMMICOLON SP
@@ -136,7 +137,7 @@ def p_STATEMENTS_LET(p):
 	'''
 	STATEMENTS : LET U ASSIGN E
 	'''
-	genCuadruploAssign(p[3])
+	genCuadruplo(p[3])
 	p[0] = STATEMENTS_LET(p[2],p[4],"STATEMENTS_LET")
 
 def p_STATEMENTS_PRINT(p):
@@ -147,10 +148,17 @@ def p_STATEMENTS_PRINT(p):
 
 def p_STATEMENTS_INPUT(p):
 	'''
-	STATEMENTS : INPUT TEXT GTGT U
+	STATEMENTS : INPUT TEXT GTGT VAR
 	'''
 	p[0] = STATEMENTS_INPUT(p[2],p[3],p[4],"STATEMENTS_INPUT")
 
+def p_STATEMENTS_INPUT_VAR(p):
+	'''
+	VAR : ID
+	| ID DCLARRAY
+	| ID DCLMATRIX
+	| ID DCLCUBE
+	'''
 def p_STATEMENTS_CLS(p):
 	'''
 	STATEMENTS : CLS
@@ -176,7 +184,7 @@ def p_STATEMENTS_DO(p):
 
 def p_STATEMENTS_FOR(p):
 	'''
-	STATEMENTS : FOR O TO E X NEXT
+	STATEMENTS : FOR ID TO E X NEXT
 	'''
 	p[0] = STATEMENTS_FOR(p[2],p[4],p[5],"STATEMENTS_FOR")
 
@@ -184,18 +192,6 @@ def p_STATEMENTS_GOSUB(p):
 	'''
 	STATEMENTS : GOSUB ID
 	'''
-
-def p_O(p):
-	'''
-	O : E
-	'''
-	p[0] = O(p[1],"O")
-
-def p_O1(p):
-	'''
-	O : E ASSIGN E
-	'''
-	p[0] = O1(p[1],p[3],"O1")
 
 def p_U(p):
 	'''
@@ -226,7 +222,7 @@ def p_U3(p):
 
 def p_Q(p):
 	'''
-	Q : LPARENT U RPARENT
+	Q : LPARENT VAR RPARENT
 	'''
 	p[0] = Q(p[2],"Q")
 

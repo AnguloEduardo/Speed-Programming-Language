@@ -25,134 +25,136 @@ Rule 19    X -> STATEMENTS SEMMICOLON X
 Rule 20    X -> <empty>
 Rule 21    STATEMENTS -> LET U ASSIGN E
 Rule 22    STATEMENTS -> PRINT Q
-Rule 23    STATEMENTS -> INPUT TEXT GTGT U
-Rule 24    STATEMENTS -> CLS
-Rule 25    STATEMENTS -> IF EL THEN X ELSE1 ENDIF
-Rule 26    STATEMENTS -> WHILE EL X WHEND
-Rule 27    STATEMENTS -> DO X LOOPUNTIL EL ENDO
-Rule 28    STATEMENTS -> FOR O TO E X NEXT
-Rule 29    STATEMENTS -> GOSUB ID
-Rule 30    O -> E
-Rule 31    O -> E ASSIGN E
-Rule 32    U -> ID
-Rule 33    U -> ID DCLARRAY
-Rule 34    U -> ID DCLMATRIX
-Rule 35    U -> ID DCLCUBE
-Rule 36    Q -> LPARENT U RPARENT
-Rule 37    Q -> TEXT
-Rule 38    TEXT -> LPARENT STRING H RPARENT
-Rule 39    TEXT -> <empty>
-Rule 40    H -> PLUS STRING H
-Rule 41    H -> PLUS U H
-Rule 42    H -> <empty>
-Rule 43    ELSE1 -> ELSE X
-Rule 44    ELSE1 -> <empty>
-Rule 45    E -> E PLUS T
-Rule 46    E -> E MINUS T
-Rule 47    E -> T
-Rule 48    T -> T TIMES F
-Rule 49    T -> T DIVIDE F
-Rule 50    T -> F
-Rule 51    F -> NUMBER
-Rule 52    F -> U
-Rule 53    F -> LPARENT E RPARENT
-Rule 54    EL -> EL OR TL
-Rule 55    EL -> TL NOT
-Rule 56    EL -> TL
-Rule 57    TL -> TL AND FL
-Rule 58    TL -> FL
-Rule 59    FL -> K OPREL K
-Rule 60    FL -> LPARENT EL RPARENT
-Rule 61    OPREL -> LT
-Rule 62    OPREL -> LTE
-Rule 63    OPREL -> GT
-Rule 64    OPREL -> GTE
-Rule 65    OPREL -> NE
-Rule 66    OPREL -> EQUAL
-Rule 67    K -> ID
-Rule 68    K -> NUMBER
+Rule 23    STATEMENTS -> INPUT TEXT GTGT VAR
+Rule 24    VAR -> ID
+Rule 25    VAR -> ID DCLARRAY
+Rule 26    VAR -> ID DCLMATRIX
+Rule 27    VAR -> ID DCLCUBE
+Rule 28    STATEMENTS -> CLS
+Rule 29    STATEMENTS -> IF EL THEN X ELSE1 ENDIF
+Rule 30    STATEMENTS -> WHILE EL X WHEND
+Rule 31    STATEMENTS -> DO X LOOPUNTIL EL ENDO
+Rule 32    STATEMENTS -> FOR ID TO E X NEXT
+Rule 33    STATEMENTS -> GOSUB ID
+Rule 34    U -> ID
+Rule 35    U -> ID DCLARRAY
+Rule 36    U -> ID DCLMATRIX
+Rule 37    U -> ID DCLCUBE
+Rule 38    Q -> LPARENT VAR RPARENT
+Rule 39    Q -> TEXT
+Rule 40    TEXT -> LPARENT STRING H RPARENT
+Rule 41    TEXT -> <empty>
+Rule 42    H -> PLUS STRING H
+Rule 43    H -> PLUS U H
+Rule 44    H -> <empty>
+Rule 45    ELSE1 -> ELSE X
+Rule 46    ELSE1 -> <empty>
+Rule 47    E -> E PLUS T
+Rule 48    E -> E MINUS T
+Rule 49    E -> T
+Rule 50    T -> T TIMES F
+Rule 51    T -> T DIVIDE F
+Rule 52    T -> F
+Rule 53    F -> NUMBER
+Rule 54    F -> U
+Rule 55    F -> LPARENT E RPARENT
+Rule 56    EL -> EL OR TL
+Rule 57    EL -> TL NOT
+Rule 58    EL -> TL
+Rule 59    TL -> TL AND FL
+Rule 60    TL -> FL
+Rule 61    FL -> K OPREL K
+Rule 62    FL -> LPARENT EL RPARENT
+Rule 63    OPREL -> LT
+Rule 64    OPREL -> LTE
+Rule 65    OPREL -> GT
+Rule 66    OPREL -> GTE
+Rule 67    OPREL -> NE
+Rule 68    OPREL -> EQUAL
+Rule 69    K -> ID
+Rule 70    K -> NUMBER
 
 Terminals, with rules where they appear
 
-AND                  : 57
+AND                  : 59
 ARRAY                : 9
 AS                   : 2
-ASSIGN               : 21 31
-CLS                  : 24
+ASSIGN               : 21
+CLS                  : 28
 COMMA                : 5
 CUBE                 : 11
 DIM                  : 2
-DIVIDE               : 49
-DO                   : 27
-ELSE                 : 43
+DIVIDE               : 51
+DO                   : 31
+ELSE                 : 45
 END                  : 1
-ENDIF                : 25
-ENDO                 : 27
+ENDIF                : 29
+ENDO                 : 31
 ENDSUB               : 17
-EQUAL                : 66
+EQUAL                : 68
 FLOAT                : 8
-FOR                  : 28
-GOSUB                : 29
-GT                   : 63
-GTE                  : 64
+FOR                  : 32
+GOSUB                : 33
+GT                   : 65
+GTE                  : 66
 GTGT                 : 23
-ID                   : 1 4 5 16 17 29 32 33 34 35 67
-IF                   : 25
+ID                   : 1 4 5 16 17 24 25 26 27 32 33 34 35 36 37 69
+IF                   : 29
 INPUT                : 23
 LBRACKET             : 12 13 13 14 14 14
 LET                  : 21
-LOOPUNTIL            : 27
-LPARENT              : 36 38 53 60
-LT                   : 61
-LTE                  : 62
+LOOPUNTIL            : 31
+LPARENT              : 38 40 55 62
+LT                   : 63
+LTE                  : 64
 MATRIX               : 10
-MINUS                : 46
-NE                   : 65
-NEXT                 : 28
-NOT                  : 55
-NUMBER               : 15 51 68
-OR                   : 54
-PLUS                 : 40 41 45
+MINUS                : 48
+NE                   : 67
+NEXT                 : 32
+NOT                  : 57
+NUMBER               : 15 53 70
+OR                   : 56
+PLUS                 : 42 43 47
 PRINT                : 22
 PROGRAM              : 1
 RBRACKET             : 12 13 13 14 14 14
-RPARENT              : 36 38 53 60
+RPARENT              : 38 40 55 62
 SEMMICOLON           : 2 17 19
-STRING               : 38 40
+STRING               : 40 42
 SUBPROCEDURE         : 17
-THEN                 : 25
-TIMES                : 48
-TO                   : 28
-WHEND                : 26
-WHILE                : 26
+THEN                 : 29
+TIMES                : 50
+TO                   : 32
+WHEND                : 30
+WHILE                : 30
 WORD                 : 7
 error                : 
 
 Nonterminals, with rules where they appear
 
-DCLARRAY             : 9 33
-DCLCUBE              : 11 35
-DCLMATRIX            : 10 34
-E                    : 21 28 30 31 31 45 46 53
-EL                   : 25 26 27 54 60
-ELSE1                : 25
-F                    : 48 49 50
-FL                   : 57 58
-H                    : 38 40 41
+DCLARRAY             : 9 25 35
+DCLCUBE              : 11 27 37
+DCLMATRIX            : 10 26 36
+E                    : 21 32 47 48 55
+EL                   : 29 30 31 56 62
+ELSE1                : 29
+F                    : 50 51 52
+FL                   : 59 60
+H                    : 40 42 43
 IDLIST               : 2 5
-K                    : 59 59
-O                    : 28
-OPREL                : 59
+K                    : 61 61
+OPREL                : 61
 Q                    : 22
 SP                   : 1 17
 STATEMENTS           : 19
-T                    : 45 46 47 48 49
-TEXT                 : 23 37
+T                    : 47 48 49 50 51
+TEXT                 : 23 39
 TIPO                 : 2
-TL                   : 54 55 56 57
-U                    : 21 23 36 41 52
+TL                   : 56 57 58 59
+U                    : 21 43 54
+VAR                  : 23 38
 VARIABLE             : 1 2
-X                    : 1 17 19 25 26 27 28 43
+X                    : 1 17 19 29 30 31 32 45
 Z                    : 12 13 13 14 14 14
 program              : 0
 
@@ -241,13 +243,13 @@ state 6
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -310,10 +312,10 @@ state 11
 state 12
 
     (21) STATEMENTS -> LET . U ASSIGN E
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
 
     ID              shift and go to state 27
 
@@ -322,49 +324,49 @@ state 12
 state 13
 
     (22) STATEMENTS -> PRINT . Q
-    (36) Q -> . LPARENT U RPARENT
-    (37) Q -> . TEXT
-    (38) TEXT -> . LPARENT STRING H RPARENT
-    (39) TEXT -> .
+    (38) Q -> . LPARENT VAR RPARENT
+    (39) Q -> . TEXT
+    (40) TEXT -> . LPARENT STRING H RPARENT
+    (41) TEXT -> .
 
     LPARENT         shift and go to state 29
-    GTGT            reduce using rule 39 (TEXT -> .)
-    SEMMICOLON      reduce using rule 39 (TEXT -> .)
+    GTGT            reduce using rule 41 (TEXT -> .)
+    SEMMICOLON      reduce using rule 41 (TEXT -> .)
 
     Q                              shift and go to state 28
     TEXT                           shift and go to state 30
 
 state 14
 
-    (23) STATEMENTS -> INPUT . TEXT GTGT U
-    (38) TEXT -> . LPARENT STRING H RPARENT
-    (39) TEXT -> .
+    (23) STATEMENTS -> INPUT . TEXT GTGT VAR
+    (40) TEXT -> . LPARENT STRING H RPARENT
+    (41) TEXT -> .
 
     LPARENT         shift and go to state 32
-    GTGT            reduce using rule 39 (TEXT -> .)
-    SEMMICOLON      reduce using rule 39 (TEXT -> .)
+    GTGT            reduce using rule 41 (TEXT -> .)
+    SEMMICOLON      reduce using rule 41 (TEXT -> .)
 
     TEXT                           shift and go to state 31
 
 state 15
 
-    (24) STATEMENTS -> CLS .
+    (28) STATEMENTS -> CLS .
 
-    SEMMICOLON      reduce using rule 24 (STATEMENTS -> CLS .)
+    SEMMICOLON      reduce using rule 28 (STATEMENTS -> CLS .)
 
 
 state 16
 
-    (25) STATEMENTS -> IF . EL THEN X ELSE1 ENDIF
-    (54) EL -> . EL OR TL
-    (55) EL -> . TL NOT
-    (56) EL -> . TL
-    (57) TL -> . TL AND FL
-    (58) TL -> . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (29) STATEMENTS -> IF . EL THEN X ELSE1 ENDIF
+    (56) EL -> . EL OR TL
+    (57) EL -> . TL NOT
+    (58) EL -> . TL
+    (59) TL -> . TL AND FL
+    (60) TL -> . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
 
     LPARENT         shift and go to state 37
     ID              shift and go to state 38
@@ -377,16 +379,16 @@ state 16
 
 state 17
 
-    (26) STATEMENTS -> WHILE . EL X WHEND
-    (54) EL -> . EL OR TL
-    (55) EL -> . TL NOT
-    (56) EL -> . TL
-    (57) TL -> . TL AND FL
-    (58) TL -> . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (30) STATEMENTS -> WHILE . EL X WHEND
+    (56) EL -> . EL OR TL
+    (57) EL -> . TL NOT
+    (58) EL -> . TL
+    (59) TL -> . TL AND FL
+    (60) TL -> . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
 
     LPARENT         shift and go to state 37
     ID              shift and go to state 38
@@ -399,18 +401,18 @@ state 17
 
 state 18
 
-    (27) STATEMENTS -> DO . X LOOPUNTIL EL ENDO
+    (31) STATEMENTS -> DO . X LOOPUNTIL EL ENDO
     (19) X -> . STATEMENTS SEMMICOLON X
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -434,38 +436,16 @@ state 18
 
 state 19
 
-    (28) STATEMENTS -> FOR . O TO E X NEXT
-    (30) O -> . E
-    (31) O -> . E ASSIGN E
-    (45) E -> . E PLUS T
-    (46) E -> . E MINUS T
-    (47) E -> . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (32) STATEMENTS -> FOR . ID TO E X NEXT
 
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
+    ID              shift and go to state 42
 
-    O                              shift and go to state 42
-    E                              shift and go to state 43
-    T                              shift and go to state 44
-    F                              shift and go to state 45
-    U                              shift and go to state 47
 
 state 20
 
-    (29) STATEMENTS -> GOSUB . ID
+    (33) STATEMENTS -> GOSUB . ID
 
-    ID              shift and go to state 49
+    ID              shift and go to state 43
 
 
 state 21
@@ -475,13 +455,13 @@ state 21
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -500,7 +480,7 @@ state 21
     FOR             shift and go to state 19
     GOSUB           shift and go to state 20
 
-    X                              shift and go to state 50
+    X                              shift and go to state 44
     STATEMENTS                     shift and go to state 11
 
 state 22
@@ -512,19 +492,19 @@ state 22
     (10) TIPO -> . MATRIX DCLMATRIX
     (11) TIPO -> . CUBE DCLCUBE
 
-    WORD            shift and go to state 52
-    FLOAT           shift and go to state 53
-    ARRAY           shift and go to state 54
-    MATRIX          shift and go to state 55
-    CUBE            shift and go to state 56
+    WORD            shift and go to state 46
+    FLOAT           shift and go to state 47
+    ARRAY           shift and go to state 48
+    MATRIX          shift and go to state 49
+    CUBE            shift and go to state 50
 
-    TIPO                           shift and go to state 51
+    TIPO                           shift and go to state 45
 
 state 23
 
     (5) IDLIST -> IDLIST COMMA . ID
 
-    ID              shift and go to state 57
+    ID              shift and go to state 51
 
 
 state 24
@@ -541,13 +521,13 @@ state 25
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -567,48 +547,47 @@ state 25
     GOSUB           shift and go to state 20
 
     STATEMENTS                     shift and go to state 11
-    X                              shift and go to state 58
+    X                              shift and go to state 52
 
 state 26
 
     (21) STATEMENTS -> LET U . ASSIGN E
 
-    ASSIGN          shift and go to state 59
+    ASSIGN          shift and go to state 53
 
 
 state 27
 
-    (32) U -> ID .
-    (33) U -> ID . DCLARRAY
-    (34) U -> ID . DCLMATRIX
-    (35) U -> ID . DCLCUBE
+    (34) U -> ID .
+    (35) U -> ID . DCLARRAY
+    (36) U -> ID . DCLMATRIX
+    (37) U -> ID . DCLCUBE
     (12) DCLARRAY -> . LBRACKET Z RBRACKET
     (13) DCLMATRIX -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET
     (14) DCLCUBE -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    ASSIGN          reduce using rule 32 (U -> ID .)
-    SEMMICOLON      reduce using rule 32 (U -> ID .)
-    RPARENT         reduce using rule 32 (U -> ID .)
-    PLUS            reduce using rule 32 (U -> ID .)
-    LET             reduce using rule 32 (U -> ID .)
-    PRINT           reduce using rule 32 (U -> ID .)
-    INPUT           reduce using rule 32 (U -> ID .)
-    CLS             reduce using rule 32 (U -> ID .)
-    IF              reduce using rule 32 (U -> ID .)
-    WHILE           reduce using rule 32 (U -> ID .)
-    DO              reduce using rule 32 (U -> ID .)
-    FOR             reduce using rule 32 (U -> ID .)
-    GOSUB           reduce using rule 32 (U -> ID .)
-    NEXT            reduce using rule 32 (U -> ID .)
-    TO              reduce using rule 32 (U -> ID .)
-    MINUS           reduce using rule 32 (U -> ID .)
-    TIMES           reduce using rule 32 (U -> ID .)
-    DIVIDE          reduce using rule 32 (U -> ID .)
-    LBRACKET        shift and go to state 63
+    ASSIGN          reduce using rule 34 (U -> ID .)
+    PLUS            reduce using rule 34 (U -> ID .)
+    RPARENT         reduce using rule 34 (U -> ID .)
+    SEMMICOLON      reduce using rule 34 (U -> ID .)
+    LET             reduce using rule 34 (U -> ID .)
+    PRINT           reduce using rule 34 (U -> ID .)
+    INPUT           reduce using rule 34 (U -> ID .)
+    CLS             reduce using rule 34 (U -> ID .)
+    IF              reduce using rule 34 (U -> ID .)
+    WHILE           reduce using rule 34 (U -> ID .)
+    DO              reduce using rule 34 (U -> ID .)
+    FOR             reduce using rule 34 (U -> ID .)
+    GOSUB           reduce using rule 34 (U -> ID .)
+    NEXT            reduce using rule 34 (U -> ID .)
+    MINUS           reduce using rule 34 (U -> ID .)
+    TIMES           reduce using rule 34 (U -> ID .)
+    DIVIDE          reduce using rule 34 (U -> ID .)
+    LBRACKET        shift and go to state 57
 
-    DCLARRAY                       shift and go to state 60
-    DCLMATRIX                      shift and go to state 61
-    DCLCUBE                        shift and go to state 62
+    DCLARRAY                       shift and go to state 54
+    DCLMATRIX                      shift and go to state 55
+    DCLCUBE                        shift and go to state 56
 
 state 28
 
@@ -619,208 +598,208 @@ state 28
 
 state 29
 
-    (36) Q -> LPARENT . U RPARENT
-    (38) TEXT -> LPARENT . STRING H RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (38) Q -> LPARENT . VAR RPARENT
+    (40) TEXT -> LPARENT . STRING H RPARENT
+    (24) VAR -> . ID
+    (25) VAR -> . ID DCLARRAY
+    (26) VAR -> . ID DCLMATRIX
+    (27) VAR -> . ID DCLCUBE
 
-    STRING          shift and go to state 65
-    ID              shift and go to state 27
+    STRING          shift and go to state 59
+    ID              shift and go to state 60
 
-    U                              shift and go to state 64
+    VAR                            shift and go to state 58
 
 state 30
 
-    (37) Q -> TEXT .
+    (39) Q -> TEXT .
 
-    SEMMICOLON      reduce using rule 37 (Q -> TEXT .)
+    SEMMICOLON      reduce using rule 39 (Q -> TEXT .)
 
 
 state 31
 
-    (23) STATEMENTS -> INPUT TEXT . GTGT U
+    (23) STATEMENTS -> INPUT TEXT . GTGT VAR
 
-    GTGT            shift and go to state 66
+    GTGT            shift and go to state 61
 
 
 state 32
 
-    (38) TEXT -> LPARENT . STRING H RPARENT
+    (40) TEXT -> LPARENT . STRING H RPARENT
 
-    STRING          shift and go to state 65
+    STRING          shift and go to state 59
 
 
 state 33
 
-    (25) STATEMENTS -> IF EL . THEN X ELSE1 ENDIF
-    (54) EL -> EL . OR TL
+    (29) STATEMENTS -> IF EL . THEN X ELSE1 ENDIF
+    (56) EL -> EL . OR TL
 
-    THEN            shift and go to state 67
-    OR              shift and go to state 68
+    THEN            shift and go to state 62
+    OR              shift and go to state 63
 
 
 state 34
 
-    (55) EL -> TL . NOT
-    (56) EL -> TL .
-    (57) TL -> TL . AND FL
+    (57) EL -> TL . NOT
+    (58) EL -> TL .
+    (59) TL -> TL . AND FL
 
-    NOT             shift and go to state 69
-    THEN            reduce using rule 56 (EL -> TL .)
-    LET             reduce using rule 56 (EL -> TL .)
-    PRINT           reduce using rule 56 (EL -> TL .)
-    INPUT           reduce using rule 56 (EL -> TL .)
-    CLS             reduce using rule 56 (EL -> TL .)
-    IF              reduce using rule 56 (EL -> TL .)
-    WHILE           reduce using rule 56 (EL -> TL .)
-    DO              reduce using rule 56 (EL -> TL .)
-    FOR             reduce using rule 56 (EL -> TL .)
-    GOSUB           reduce using rule 56 (EL -> TL .)
-    WHEND           reduce using rule 56 (EL -> TL .)
-    ENDO            reduce using rule 56 (EL -> TL .)
-    OR              reduce using rule 56 (EL -> TL .)
-    RPARENT         reduce using rule 56 (EL -> TL .)
-    AND             shift and go to state 70
+    NOT             shift and go to state 64
+    THEN            reduce using rule 58 (EL -> TL .)
+    LET             reduce using rule 58 (EL -> TL .)
+    PRINT           reduce using rule 58 (EL -> TL .)
+    INPUT           reduce using rule 58 (EL -> TL .)
+    CLS             reduce using rule 58 (EL -> TL .)
+    IF              reduce using rule 58 (EL -> TL .)
+    WHILE           reduce using rule 58 (EL -> TL .)
+    DO              reduce using rule 58 (EL -> TL .)
+    FOR             reduce using rule 58 (EL -> TL .)
+    GOSUB           reduce using rule 58 (EL -> TL .)
+    WHEND           reduce using rule 58 (EL -> TL .)
+    ENDO            reduce using rule 58 (EL -> TL .)
+    OR              reduce using rule 58 (EL -> TL .)
+    RPARENT         reduce using rule 58 (EL -> TL .)
+    AND             shift and go to state 65
 
 
 state 35
 
-    (58) TL -> FL .
+    (60) TL -> FL .
 
-    THEN            reduce using rule 58 (TL -> FL .)
-    LET             reduce using rule 58 (TL -> FL .)
-    PRINT           reduce using rule 58 (TL -> FL .)
-    INPUT           reduce using rule 58 (TL -> FL .)
-    CLS             reduce using rule 58 (TL -> FL .)
-    IF              reduce using rule 58 (TL -> FL .)
-    WHILE           reduce using rule 58 (TL -> FL .)
-    DO              reduce using rule 58 (TL -> FL .)
-    FOR             reduce using rule 58 (TL -> FL .)
-    GOSUB           reduce using rule 58 (TL -> FL .)
-    WHEND           reduce using rule 58 (TL -> FL .)
-    ENDO            reduce using rule 58 (TL -> FL .)
-    OR              reduce using rule 58 (TL -> FL .)
-    NOT             reduce using rule 58 (TL -> FL .)
-    AND             reduce using rule 58 (TL -> FL .)
-    RPARENT         reduce using rule 58 (TL -> FL .)
+    THEN            reduce using rule 60 (TL -> FL .)
+    LET             reduce using rule 60 (TL -> FL .)
+    PRINT           reduce using rule 60 (TL -> FL .)
+    INPUT           reduce using rule 60 (TL -> FL .)
+    CLS             reduce using rule 60 (TL -> FL .)
+    IF              reduce using rule 60 (TL -> FL .)
+    WHILE           reduce using rule 60 (TL -> FL .)
+    DO              reduce using rule 60 (TL -> FL .)
+    FOR             reduce using rule 60 (TL -> FL .)
+    GOSUB           reduce using rule 60 (TL -> FL .)
+    WHEND           reduce using rule 60 (TL -> FL .)
+    ENDO            reduce using rule 60 (TL -> FL .)
+    OR              reduce using rule 60 (TL -> FL .)
+    NOT             reduce using rule 60 (TL -> FL .)
+    AND             reduce using rule 60 (TL -> FL .)
+    RPARENT         reduce using rule 60 (TL -> FL .)
 
 
 state 36
 
-    (59) FL -> K . OPREL K
-    (61) OPREL -> . LT
-    (62) OPREL -> . LTE
-    (63) OPREL -> . GT
-    (64) OPREL -> . GTE
-    (65) OPREL -> . NE
-    (66) OPREL -> . EQUAL
+    (61) FL -> K . OPREL K
+    (63) OPREL -> . LT
+    (64) OPREL -> . LTE
+    (65) OPREL -> . GT
+    (66) OPREL -> . GTE
+    (67) OPREL -> . NE
+    (68) OPREL -> . EQUAL
 
-    LT              shift and go to state 72
-    LTE             shift and go to state 73
-    GT              shift and go to state 74
-    GTE             shift and go to state 75
-    NE              shift and go to state 76
-    EQUAL           shift and go to state 77
+    LT              shift and go to state 67
+    LTE             shift and go to state 68
+    GT              shift and go to state 69
+    GTE             shift and go to state 70
+    NE              shift and go to state 71
+    EQUAL           shift and go to state 72
 
-    OPREL                          shift and go to state 71
+    OPREL                          shift and go to state 66
 
 state 37
 
-    (60) FL -> LPARENT . EL RPARENT
-    (54) EL -> . EL OR TL
-    (55) EL -> . TL NOT
-    (56) EL -> . TL
-    (57) TL -> . TL AND FL
-    (58) TL -> . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (62) FL -> LPARENT . EL RPARENT
+    (56) EL -> . EL OR TL
+    (57) EL -> . TL NOT
+    (58) EL -> . TL
+    (59) TL -> . TL AND FL
+    (60) TL -> . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
 
     LPARENT         shift and go to state 37
     ID              shift and go to state 38
     NUMBER          shift and go to state 39
 
-    EL                             shift and go to state 78
+    EL                             shift and go to state 73
     TL                             shift and go to state 34
     FL                             shift and go to state 35
     K                              shift and go to state 36
 
 state 38
 
-    (67) K -> ID .
+    (69) K -> ID .
 
-    LT              reduce using rule 67 (K -> ID .)
-    LTE             reduce using rule 67 (K -> ID .)
-    GT              reduce using rule 67 (K -> ID .)
-    GTE             reduce using rule 67 (K -> ID .)
-    NE              reduce using rule 67 (K -> ID .)
-    EQUAL           reduce using rule 67 (K -> ID .)
-    THEN            reduce using rule 67 (K -> ID .)
-    LET             reduce using rule 67 (K -> ID .)
-    PRINT           reduce using rule 67 (K -> ID .)
-    INPUT           reduce using rule 67 (K -> ID .)
-    CLS             reduce using rule 67 (K -> ID .)
-    IF              reduce using rule 67 (K -> ID .)
-    WHILE           reduce using rule 67 (K -> ID .)
-    DO              reduce using rule 67 (K -> ID .)
-    FOR             reduce using rule 67 (K -> ID .)
-    GOSUB           reduce using rule 67 (K -> ID .)
-    WHEND           reduce using rule 67 (K -> ID .)
-    ENDO            reduce using rule 67 (K -> ID .)
-    OR              reduce using rule 67 (K -> ID .)
-    NOT             reduce using rule 67 (K -> ID .)
-    AND             reduce using rule 67 (K -> ID .)
-    RPARENT         reduce using rule 67 (K -> ID .)
+    LT              reduce using rule 69 (K -> ID .)
+    LTE             reduce using rule 69 (K -> ID .)
+    GT              reduce using rule 69 (K -> ID .)
+    GTE             reduce using rule 69 (K -> ID .)
+    NE              reduce using rule 69 (K -> ID .)
+    EQUAL           reduce using rule 69 (K -> ID .)
+    THEN            reduce using rule 69 (K -> ID .)
+    LET             reduce using rule 69 (K -> ID .)
+    PRINT           reduce using rule 69 (K -> ID .)
+    INPUT           reduce using rule 69 (K -> ID .)
+    CLS             reduce using rule 69 (K -> ID .)
+    IF              reduce using rule 69 (K -> ID .)
+    WHILE           reduce using rule 69 (K -> ID .)
+    DO              reduce using rule 69 (K -> ID .)
+    FOR             reduce using rule 69 (K -> ID .)
+    GOSUB           reduce using rule 69 (K -> ID .)
+    WHEND           reduce using rule 69 (K -> ID .)
+    ENDO            reduce using rule 69 (K -> ID .)
+    OR              reduce using rule 69 (K -> ID .)
+    NOT             reduce using rule 69 (K -> ID .)
+    AND             reduce using rule 69 (K -> ID .)
+    RPARENT         reduce using rule 69 (K -> ID .)
 
 
 state 39
 
-    (68) K -> NUMBER .
+    (70) K -> NUMBER .
 
-    LT              reduce using rule 68 (K -> NUMBER .)
-    LTE             reduce using rule 68 (K -> NUMBER .)
-    GT              reduce using rule 68 (K -> NUMBER .)
-    GTE             reduce using rule 68 (K -> NUMBER .)
-    NE              reduce using rule 68 (K -> NUMBER .)
-    EQUAL           reduce using rule 68 (K -> NUMBER .)
-    THEN            reduce using rule 68 (K -> NUMBER .)
-    LET             reduce using rule 68 (K -> NUMBER .)
-    PRINT           reduce using rule 68 (K -> NUMBER .)
-    INPUT           reduce using rule 68 (K -> NUMBER .)
-    CLS             reduce using rule 68 (K -> NUMBER .)
-    IF              reduce using rule 68 (K -> NUMBER .)
-    WHILE           reduce using rule 68 (K -> NUMBER .)
-    DO              reduce using rule 68 (K -> NUMBER .)
-    FOR             reduce using rule 68 (K -> NUMBER .)
-    GOSUB           reduce using rule 68 (K -> NUMBER .)
-    WHEND           reduce using rule 68 (K -> NUMBER .)
-    ENDO            reduce using rule 68 (K -> NUMBER .)
-    OR              reduce using rule 68 (K -> NUMBER .)
-    NOT             reduce using rule 68 (K -> NUMBER .)
-    AND             reduce using rule 68 (K -> NUMBER .)
-    RPARENT         reduce using rule 68 (K -> NUMBER .)
+    LT              reduce using rule 70 (K -> NUMBER .)
+    LTE             reduce using rule 70 (K -> NUMBER .)
+    GT              reduce using rule 70 (K -> NUMBER .)
+    GTE             reduce using rule 70 (K -> NUMBER .)
+    NE              reduce using rule 70 (K -> NUMBER .)
+    EQUAL           reduce using rule 70 (K -> NUMBER .)
+    THEN            reduce using rule 70 (K -> NUMBER .)
+    LET             reduce using rule 70 (K -> NUMBER .)
+    PRINT           reduce using rule 70 (K -> NUMBER .)
+    INPUT           reduce using rule 70 (K -> NUMBER .)
+    CLS             reduce using rule 70 (K -> NUMBER .)
+    IF              reduce using rule 70 (K -> NUMBER .)
+    WHILE           reduce using rule 70 (K -> NUMBER .)
+    DO              reduce using rule 70 (K -> NUMBER .)
+    FOR             reduce using rule 70 (K -> NUMBER .)
+    GOSUB           reduce using rule 70 (K -> NUMBER .)
+    WHEND           reduce using rule 70 (K -> NUMBER .)
+    ENDO            reduce using rule 70 (K -> NUMBER .)
+    OR              reduce using rule 70 (K -> NUMBER .)
+    NOT             reduce using rule 70 (K -> NUMBER .)
+    AND             reduce using rule 70 (K -> NUMBER .)
+    RPARENT         reduce using rule 70 (K -> NUMBER .)
 
 
 state 40
 
-    (26) STATEMENTS -> WHILE EL . X WHEND
-    (54) EL -> EL . OR TL
+    (30) STATEMENTS -> WHILE EL . X WHEND
+    (56) EL -> EL . OR TL
     (19) X -> . STATEMENTS SEMMICOLON X
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
-    OR              shift and go to state 68
+    OR              shift and go to state 63
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
     ELSE            reduce using rule 20 (X -> .)
@@ -838,223 +817,86 @@ state 40
     FOR             shift and go to state 19
     GOSUB           shift and go to state 20
 
-    X                              shift and go to state 79
+    X                              shift and go to state 74
     STATEMENTS                     shift and go to state 11
 
 state 41
 
-    (27) STATEMENTS -> DO X . LOOPUNTIL EL ENDO
+    (31) STATEMENTS -> DO X . LOOPUNTIL EL ENDO
 
-    LOOPUNTIL       shift and go to state 80
+    LOOPUNTIL       shift and go to state 75
 
 
 state 42
 
-    (28) STATEMENTS -> FOR O . TO E X NEXT
+    (32) STATEMENTS -> FOR ID . TO E X NEXT
 
-    TO              shift and go to state 81
+    TO              shift and go to state 76
 
 
 state 43
 
-    (30) O -> E .
-    (31) O -> E . ASSIGN E
-    (45) E -> E . PLUS T
-    (46) E -> E . MINUS T
+    (33) STATEMENTS -> GOSUB ID .
 
-    TO              reduce using rule 30 (O -> E .)
-    ASSIGN          shift and go to state 82
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
+    SEMMICOLON      reduce using rule 33 (STATEMENTS -> GOSUB ID .)
 
 
 state 44
 
-    (47) E -> T .
-    (48) T -> T . TIMES F
-    (49) T -> T . DIVIDE F
+    (17) SP -> SUBPROCEDURE ID X . ENDSUB SEMMICOLON SP
 
-    SEMMICOLON      reduce using rule 47 (E -> T .)
-    LET             reduce using rule 47 (E -> T .)
-    PRINT           reduce using rule 47 (E -> T .)
-    INPUT           reduce using rule 47 (E -> T .)
-    CLS             reduce using rule 47 (E -> T .)
-    IF              reduce using rule 47 (E -> T .)
-    WHILE           reduce using rule 47 (E -> T .)
-    DO              reduce using rule 47 (E -> T .)
-    FOR             reduce using rule 47 (E -> T .)
-    GOSUB           reduce using rule 47 (E -> T .)
-    NEXT            reduce using rule 47 (E -> T .)
-    TO              reduce using rule 47 (E -> T .)
-    ASSIGN          reduce using rule 47 (E -> T .)
-    PLUS            reduce using rule 47 (E -> T .)
-    MINUS           reduce using rule 47 (E -> T .)
-    RPARENT         reduce using rule 47 (E -> T .)
-    TIMES           shift and go to state 85
-    DIVIDE          shift and go to state 86
+    ENDSUB          shift and go to state 77
 
 
 state 45
 
-    (50) T -> F .
+    (2) VARIABLE -> DIM IDLIST AS TIPO . SEMMICOLON VARIABLE
 
-    SEMMICOLON      reduce using rule 50 (T -> F .)
-    LET             reduce using rule 50 (T -> F .)
-    PRINT           reduce using rule 50 (T -> F .)
-    INPUT           reduce using rule 50 (T -> F .)
-    CLS             reduce using rule 50 (T -> F .)
-    IF              reduce using rule 50 (T -> F .)
-    WHILE           reduce using rule 50 (T -> F .)
-    DO              reduce using rule 50 (T -> F .)
-    FOR             reduce using rule 50 (T -> F .)
-    GOSUB           reduce using rule 50 (T -> F .)
-    NEXT            reduce using rule 50 (T -> F .)
-    TO              reduce using rule 50 (T -> F .)
-    ASSIGN          reduce using rule 50 (T -> F .)
-    PLUS            reduce using rule 50 (T -> F .)
-    MINUS           reduce using rule 50 (T -> F .)
-    TIMES           reduce using rule 50 (T -> F .)
-    DIVIDE          reduce using rule 50 (T -> F .)
-    RPARENT         reduce using rule 50 (T -> F .)
+    SEMMICOLON      shift and go to state 78
 
 
 state 46
-
-    (51) F -> NUMBER .
-
-    SEMMICOLON      reduce using rule 51 (F -> NUMBER .)
-    LET             reduce using rule 51 (F -> NUMBER .)
-    PRINT           reduce using rule 51 (F -> NUMBER .)
-    INPUT           reduce using rule 51 (F -> NUMBER .)
-    CLS             reduce using rule 51 (F -> NUMBER .)
-    IF              reduce using rule 51 (F -> NUMBER .)
-    WHILE           reduce using rule 51 (F -> NUMBER .)
-    DO              reduce using rule 51 (F -> NUMBER .)
-    FOR             reduce using rule 51 (F -> NUMBER .)
-    GOSUB           reduce using rule 51 (F -> NUMBER .)
-    NEXT            reduce using rule 51 (F -> NUMBER .)
-    TO              reduce using rule 51 (F -> NUMBER .)
-    ASSIGN          reduce using rule 51 (F -> NUMBER .)
-    PLUS            reduce using rule 51 (F -> NUMBER .)
-    MINUS           reduce using rule 51 (F -> NUMBER .)
-    TIMES           reduce using rule 51 (F -> NUMBER .)
-    DIVIDE          reduce using rule 51 (F -> NUMBER .)
-    RPARENT         reduce using rule 51 (F -> NUMBER .)
-
-
-state 47
-
-    (52) F -> U .
-
-    SEMMICOLON      reduce using rule 52 (F -> U .)
-    LET             reduce using rule 52 (F -> U .)
-    PRINT           reduce using rule 52 (F -> U .)
-    INPUT           reduce using rule 52 (F -> U .)
-    CLS             reduce using rule 52 (F -> U .)
-    IF              reduce using rule 52 (F -> U .)
-    WHILE           reduce using rule 52 (F -> U .)
-    DO              reduce using rule 52 (F -> U .)
-    FOR             reduce using rule 52 (F -> U .)
-    GOSUB           reduce using rule 52 (F -> U .)
-    NEXT            reduce using rule 52 (F -> U .)
-    TO              reduce using rule 52 (F -> U .)
-    ASSIGN          reduce using rule 52 (F -> U .)
-    PLUS            reduce using rule 52 (F -> U .)
-    MINUS           reduce using rule 52 (F -> U .)
-    TIMES           reduce using rule 52 (F -> U .)
-    DIVIDE          reduce using rule 52 (F -> U .)
-    RPARENT         reduce using rule 52 (F -> U .)
-
-
-state 48
-
-    (53) F -> LPARENT . E RPARENT
-    (45) E -> . E PLUS T
-    (46) E -> . E MINUS T
-    (47) E -> . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    E                              shift and go to state 87
-    T                              shift and go to state 44
-    F                              shift and go to state 45
-    U                              shift and go to state 47
-
-state 49
-
-    (29) STATEMENTS -> GOSUB ID .
-
-    SEMMICOLON      reduce using rule 29 (STATEMENTS -> GOSUB ID .)
-
-
-state 50
-
-    (17) SP -> SUBPROCEDURE ID X . ENDSUB SEMMICOLON SP
-
-    ENDSUB          shift and go to state 88
-
-
-state 51
-
-    (2) VARIABLE -> DIM IDLIST AS TIPO . SEMMICOLON VARIABLE
-
-    SEMMICOLON      shift and go to state 89
-
-
-state 52
 
     (7) TIPO -> WORD .
 
     SEMMICOLON      reduce using rule 7 (TIPO -> WORD .)
 
 
-state 53
+state 47
 
     (8) TIPO -> FLOAT .
 
     SEMMICOLON      reduce using rule 8 (TIPO -> FLOAT .)
 
 
-state 54
+state 48
 
     (9) TIPO -> ARRAY . DCLARRAY
     (12) DCLARRAY -> . LBRACKET Z RBRACKET
 
-    LBRACKET        shift and go to state 91
+    LBRACKET        shift and go to state 80
 
-    DCLARRAY                       shift and go to state 90
+    DCLARRAY                       shift and go to state 79
 
-state 55
+state 49
 
     (10) TIPO -> MATRIX . DCLMATRIX
     (13) DCLMATRIX -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    LBRACKET        shift and go to state 93
+    LBRACKET        shift and go to state 82
 
-    DCLMATRIX                      shift and go to state 92
+    DCLMATRIX                      shift and go to state 81
 
-state 56
+state 50
 
     (11) TIPO -> CUBE . DCLCUBE
     (14) DCLCUBE -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    LBRACKET        shift and go to state 95
+    LBRACKET        shift and go to state 84
 
-    DCLCUBE                        shift and go to state 94
+    DCLCUBE                        shift and go to state 83
 
-state 57
+state 51
 
     (5) IDLIST -> IDLIST COMMA ID .
 
@@ -1062,7 +904,7 @@ state 57
     COMMA           reduce using rule 5 (IDLIST -> IDLIST COMMA ID .)
 
 
-state 58
+state 52
 
     (19) X -> STATEMENTS SEMMICOLON X .
 
@@ -1075,105 +917,102 @@ state 58
     NEXT            reduce using rule 19 (X -> STATEMENTS SEMMICOLON X .)
 
 
-state 59
+state 53
 
     (21) STATEMENTS -> LET U ASSIGN . E
-    (45) E -> . E PLUS T
-    (46) E -> . E MINUS T
-    (47) E -> . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (47) E -> . E PLUS T
+    (48) E -> . E MINUS T
+    (49) E -> . T
+    (50) T -> . T TIMES F
+    (51) T -> . T DIVIDE F
+    (52) T -> . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
 
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
     ID              shift and go to state 27
 
-    U                              shift and go to state 47
-    E                              shift and go to state 96
-    T                              shift and go to state 44
-    F                              shift and go to state 45
+    U                              shift and go to state 85
+    E                              shift and go to state 86
+    T                              shift and go to state 87
+    F                              shift and go to state 88
 
-state 60
+state 54
 
-    (33) U -> ID DCLARRAY .
+    (35) U -> ID DCLARRAY .
 
-    ASSIGN          reduce using rule 33 (U -> ID DCLARRAY .)
-    SEMMICOLON      reduce using rule 33 (U -> ID DCLARRAY .)
-    RPARENT         reduce using rule 33 (U -> ID DCLARRAY .)
-    PLUS            reduce using rule 33 (U -> ID DCLARRAY .)
-    LET             reduce using rule 33 (U -> ID DCLARRAY .)
-    PRINT           reduce using rule 33 (U -> ID DCLARRAY .)
-    INPUT           reduce using rule 33 (U -> ID DCLARRAY .)
-    CLS             reduce using rule 33 (U -> ID DCLARRAY .)
-    IF              reduce using rule 33 (U -> ID DCLARRAY .)
-    WHILE           reduce using rule 33 (U -> ID DCLARRAY .)
-    DO              reduce using rule 33 (U -> ID DCLARRAY .)
-    FOR             reduce using rule 33 (U -> ID DCLARRAY .)
-    GOSUB           reduce using rule 33 (U -> ID DCLARRAY .)
-    NEXT            reduce using rule 33 (U -> ID DCLARRAY .)
-    TO              reduce using rule 33 (U -> ID DCLARRAY .)
-    MINUS           reduce using rule 33 (U -> ID DCLARRAY .)
-    TIMES           reduce using rule 33 (U -> ID DCLARRAY .)
-    DIVIDE          reduce using rule 33 (U -> ID DCLARRAY .)
-
-
-state 61
-
-    (34) U -> ID DCLMATRIX .
-
-    ASSIGN          reduce using rule 34 (U -> ID DCLMATRIX .)
-    SEMMICOLON      reduce using rule 34 (U -> ID DCLMATRIX .)
-    RPARENT         reduce using rule 34 (U -> ID DCLMATRIX .)
-    PLUS            reduce using rule 34 (U -> ID DCLMATRIX .)
-    LET             reduce using rule 34 (U -> ID DCLMATRIX .)
-    PRINT           reduce using rule 34 (U -> ID DCLMATRIX .)
-    INPUT           reduce using rule 34 (U -> ID DCLMATRIX .)
-    CLS             reduce using rule 34 (U -> ID DCLMATRIX .)
-    IF              reduce using rule 34 (U -> ID DCLMATRIX .)
-    WHILE           reduce using rule 34 (U -> ID DCLMATRIX .)
-    DO              reduce using rule 34 (U -> ID DCLMATRIX .)
-    FOR             reduce using rule 34 (U -> ID DCLMATRIX .)
-    GOSUB           reduce using rule 34 (U -> ID DCLMATRIX .)
-    NEXT            reduce using rule 34 (U -> ID DCLMATRIX .)
-    TO              reduce using rule 34 (U -> ID DCLMATRIX .)
-    MINUS           reduce using rule 34 (U -> ID DCLMATRIX .)
-    TIMES           reduce using rule 34 (U -> ID DCLMATRIX .)
-    DIVIDE          reduce using rule 34 (U -> ID DCLMATRIX .)
+    ASSIGN          reduce using rule 35 (U -> ID DCLARRAY .)
+    PLUS            reduce using rule 35 (U -> ID DCLARRAY .)
+    RPARENT         reduce using rule 35 (U -> ID DCLARRAY .)
+    SEMMICOLON      reduce using rule 35 (U -> ID DCLARRAY .)
+    LET             reduce using rule 35 (U -> ID DCLARRAY .)
+    PRINT           reduce using rule 35 (U -> ID DCLARRAY .)
+    INPUT           reduce using rule 35 (U -> ID DCLARRAY .)
+    CLS             reduce using rule 35 (U -> ID DCLARRAY .)
+    IF              reduce using rule 35 (U -> ID DCLARRAY .)
+    WHILE           reduce using rule 35 (U -> ID DCLARRAY .)
+    DO              reduce using rule 35 (U -> ID DCLARRAY .)
+    FOR             reduce using rule 35 (U -> ID DCLARRAY .)
+    GOSUB           reduce using rule 35 (U -> ID DCLARRAY .)
+    NEXT            reduce using rule 35 (U -> ID DCLARRAY .)
+    MINUS           reduce using rule 35 (U -> ID DCLARRAY .)
+    TIMES           reduce using rule 35 (U -> ID DCLARRAY .)
+    DIVIDE          reduce using rule 35 (U -> ID DCLARRAY .)
 
 
-state 62
+state 55
 
-    (35) U -> ID DCLCUBE .
+    (36) U -> ID DCLMATRIX .
 
-    ASSIGN          reduce using rule 35 (U -> ID DCLCUBE .)
-    SEMMICOLON      reduce using rule 35 (U -> ID DCLCUBE .)
-    RPARENT         reduce using rule 35 (U -> ID DCLCUBE .)
-    PLUS            reduce using rule 35 (U -> ID DCLCUBE .)
-    LET             reduce using rule 35 (U -> ID DCLCUBE .)
-    PRINT           reduce using rule 35 (U -> ID DCLCUBE .)
-    INPUT           reduce using rule 35 (U -> ID DCLCUBE .)
-    CLS             reduce using rule 35 (U -> ID DCLCUBE .)
-    IF              reduce using rule 35 (U -> ID DCLCUBE .)
-    WHILE           reduce using rule 35 (U -> ID DCLCUBE .)
-    DO              reduce using rule 35 (U -> ID DCLCUBE .)
-    FOR             reduce using rule 35 (U -> ID DCLCUBE .)
-    GOSUB           reduce using rule 35 (U -> ID DCLCUBE .)
-    NEXT            reduce using rule 35 (U -> ID DCLCUBE .)
-    TO              reduce using rule 35 (U -> ID DCLCUBE .)
-    MINUS           reduce using rule 35 (U -> ID DCLCUBE .)
-    TIMES           reduce using rule 35 (U -> ID DCLCUBE .)
-    DIVIDE          reduce using rule 35 (U -> ID DCLCUBE .)
+    ASSIGN          reduce using rule 36 (U -> ID DCLMATRIX .)
+    PLUS            reduce using rule 36 (U -> ID DCLMATRIX .)
+    RPARENT         reduce using rule 36 (U -> ID DCLMATRIX .)
+    SEMMICOLON      reduce using rule 36 (U -> ID DCLMATRIX .)
+    LET             reduce using rule 36 (U -> ID DCLMATRIX .)
+    PRINT           reduce using rule 36 (U -> ID DCLMATRIX .)
+    INPUT           reduce using rule 36 (U -> ID DCLMATRIX .)
+    CLS             reduce using rule 36 (U -> ID DCLMATRIX .)
+    IF              reduce using rule 36 (U -> ID DCLMATRIX .)
+    WHILE           reduce using rule 36 (U -> ID DCLMATRIX .)
+    DO              reduce using rule 36 (U -> ID DCLMATRIX .)
+    FOR             reduce using rule 36 (U -> ID DCLMATRIX .)
+    GOSUB           reduce using rule 36 (U -> ID DCLMATRIX .)
+    NEXT            reduce using rule 36 (U -> ID DCLMATRIX .)
+    MINUS           reduce using rule 36 (U -> ID DCLMATRIX .)
+    TIMES           reduce using rule 36 (U -> ID DCLMATRIX .)
+    DIVIDE          reduce using rule 36 (U -> ID DCLMATRIX .)
 
 
-state 63
+state 56
+
+    (37) U -> ID DCLCUBE .
+
+    ASSIGN          reduce using rule 37 (U -> ID DCLCUBE .)
+    PLUS            reduce using rule 37 (U -> ID DCLCUBE .)
+    RPARENT         reduce using rule 37 (U -> ID DCLCUBE .)
+    SEMMICOLON      reduce using rule 37 (U -> ID DCLCUBE .)
+    LET             reduce using rule 37 (U -> ID DCLCUBE .)
+    PRINT           reduce using rule 37 (U -> ID DCLCUBE .)
+    INPUT           reduce using rule 37 (U -> ID DCLCUBE .)
+    CLS             reduce using rule 37 (U -> ID DCLCUBE .)
+    IF              reduce using rule 37 (U -> ID DCLCUBE .)
+    WHILE           reduce using rule 37 (U -> ID DCLCUBE .)
+    DO              reduce using rule 37 (U -> ID DCLCUBE .)
+    FOR             reduce using rule 37 (U -> ID DCLCUBE .)
+    GOSUB           reduce using rule 37 (U -> ID DCLCUBE .)
+    NEXT            reduce using rule 37 (U -> ID DCLCUBE .)
+    MINUS           reduce using rule 37 (U -> ID DCLCUBE .)
+    TIMES           reduce using rule 37 (U -> ID DCLCUBE .)
+    DIVIDE          reduce using rule 37 (U -> ID DCLCUBE .)
+
+
+state 57
 
     (12) DCLARRAY -> LBRACKET . Z RBRACKET
     (13) DCLMATRIX -> LBRACKET . Z RBRACKET LBRACKET Z RBRACKET
@@ -1181,56 +1020,74 @@ state 63
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 97
+    Z                              shift and go to state 91
 
-state 64
+state 58
 
-    (36) Q -> LPARENT U . RPARENT
+    (38) Q -> LPARENT VAR . RPARENT
 
-    RPARENT         shift and go to state 100
+    RPARENT         shift and go to state 94
 
 
-state 65
+state 59
 
-    (38) TEXT -> LPARENT STRING . H RPARENT
-    (40) H -> . PLUS STRING H
-    (41) H -> . PLUS U H
-    (42) H -> .
+    (40) TEXT -> LPARENT STRING . H RPARENT
+    (42) H -> . PLUS STRING H
+    (43) H -> . PLUS U H
+    (44) H -> .
 
-    PLUS            shift and go to state 102
-    RPARENT         reduce using rule 42 (H -> .)
+    PLUS            shift and go to state 96
+    RPARENT         reduce using rule 44 (H -> .)
 
-    H                              shift and go to state 101
+    H                              shift and go to state 95
 
-state 66
+state 60
 
-    (23) STATEMENTS -> INPUT TEXT GTGT . U
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (24) VAR -> ID .
+    (25) VAR -> ID . DCLARRAY
+    (26) VAR -> ID . DCLMATRIX
+    (27) VAR -> ID . DCLCUBE
+    (12) DCLARRAY -> . LBRACKET Z RBRACKET
+    (13) DCLMATRIX -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET
+    (14) DCLCUBE -> . LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    ID              shift and go to state 27
+    SEMMICOLON      reduce using rule 24 (VAR -> ID .)
+    RPARENT         reduce using rule 24 (VAR -> ID .)
+    LBRACKET        shift and go to state 57
 
-    U                              shift and go to state 103
+    DCLARRAY                       shift and go to state 97
+    DCLMATRIX                      shift and go to state 98
+    DCLCUBE                        shift and go to state 99
 
-state 67
+state 61
 
-    (25) STATEMENTS -> IF EL THEN . X ELSE1 ENDIF
+    (23) STATEMENTS -> INPUT TEXT GTGT . VAR
+    (24) VAR -> . ID
+    (25) VAR -> . ID DCLARRAY
+    (26) VAR -> . ID DCLMATRIX
+    (27) VAR -> . ID DCLCUBE
+
+    ID              shift and go to state 60
+
+    VAR                            shift and go to state 100
+
+state 62
+
+    (29) STATEMENTS -> IF EL THEN . X ELSE1 ENDIF
     (19) X -> . STATEMENTS SEMMICOLON X
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -1249,310 +1106,193 @@ state 67
     FOR             shift and go to state 19
     GOSUB           shift and go to state 20
 
-    X                              shift and go to state 104
+    X                              shift and go to state 101
     STATEMENTS                     shift and go to state 11
 
-state 68
+state 63
 
-    (54) EL -> EL OR . TL
-    (57) TL -> . TL AND FL
-    (58) TL -> . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (56) EL -> EL OR . TL
+    (59) TL -> . TL AND FL
+    (60) TL -> . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
 
     LPARENT         shift and go to state 37
     ID              shift and go to state 38
     NUMBER          shift and go to state 39
 
-    TL                             shift and go to state 105
+    TL                             shift and go to state 102
     FL                             shift and go to state 35
     K                              shift and go to state 36
 
+state 64
+
+    (57) EL -> TL NOT .
+
+    THEN            reduce using rule 57 (EL -> TL NOT .)
+    LET             reduce using rule 57 (EL -> TL NOT .)
+    PRINT           reduce using rule 57 (EL -> TL NOT .)
+    INPUT           reduce using rule 57 (EL -> TL NOT .)
+    CLS             reduce using rule 57 (EL -> TL NOT .)
+    IF              reduce using rule 57 (EL -> TL NOT .)
+    WHILE           reduce using rule 57 (EL -> TL NOT .)
+    DO              reduce using rule 57 (EL -> TL NOT .)
+    FOR             reduce using rule 57 (EL -> TL NOT .)
+    GOSUB           reduce using rule 57 (EL -> TL NOT .)
+    WHEND           reduce using rule 57 (EL -> TL NOT .)
+    ENDO            reduce using rule 57 (EL -> TL NOT .)
+    OR              reduce using rule 57 (EL -> TL NOT .)
+    RPARENT         reduce using rule 57 (EL -> TL NOT .)
+
+
+state 65
+
+    (59) TL -> TL AND . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
+
+    LPARENT         shift and go to state 37
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+
+    FL                             shift and go to state 103
+    K                              shift and go to state 36
+
+state 66
+
+    (61) FL -> K OPREL . K
+    (69) K -> . ID
+    (70) K -> . NUMBER
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+
+    K                              shift and go to state 104
+
+state 67
+
+    (63) OPREL -> LT .
+
+    ID              reduce using rule 63 (OPREL -> LT .)
+    NUMBER          reduce using rule 63 (OPREL -> LT .)
+
+
+state 68
+
+    (64) OPREL -> LTE .
+
+    ID              reduce using rule 64 (OPREL -> LTE .)
+    NUMBER          reduce using rule 64 (OPREL -> LTE .)
+
+
 state 69
 
-    (55) EL -> TL NOT .
+    (65) OPREL -> GT .
 
-    THEN            reduce using rule 55 (EL -> TL NOT .)
-    LET             reduce using rule 55 (EL -> TL NOT .)
-    PRINT           reduce using rule 55 (EL -> TL NOT .)
-    INPUT           reduce using rule 55 (EL -> TL NOT .)
-    CLS             reduce using rule 55 (EL -> TL NOT .)
-    IF              reduce using rule 55 (EL -> TL NOT .)
-    WHILE           reduce using rule 55 (EL -> TL NOT .)
-    DO              reduce using rule 55 (EL -> TL NOT .)
-    FOR             reduce using rule 55 (EL -> TL NOT .)
-    GOSUB           reduce using rule 55 (EL -> TL NOT .)
-    WHEND           reduce using rule 55 (EL -> TL NOT .)
-    ENDO            reduce using rule 55 (EL -> TL NOT .)
-    OR              reduce using rule 55 (EL -> TL NOT .)
-    RPARENT         reduce using rule 55 (EL -> TL NOT .)
+    ID              reduce using rule 65 (OPREL -> GT .)
+    NUMBER          reduce using rule 65 (OPREL -> GT .)
 
 
 state 70
 
-    (57) TL -> TL AND . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (66) OPREL -> GTE .
 
-    LPARENT         shift and go to state 37
-    ID              shift and go to state 38
-    NUMBER          shift and go to state 39
+    ID              reduce using rule 66 (OPREL -> GTE .)
+    NUMBER          reduce using rule 66 (OPREL -> GTE .)
 
-    FL                             shift and go to state 106
-    K                              shift and go to state 36
 
 state 71
 
-    (59) FL -> K OPREL . K
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (67) OPREL -> NE .
 
-    ID              shift and go to state 38
-    NUMBER          shift and go to state 39
+    ID              reduce using rule 67 (OPREL -> NE .)
+    NUMBER          reduce using rule 67 (OPREL -> NE .)
 
-    K                              shift and go to state 107
 
 state 72
 
-    (61) OPREL -> LT .
+    (68) OPREL -> EQUAL .
 
-    ID              reduce using rule 61 (OPREL -> LT .)
-    NUMBER          reduce using rule 61 (OPREL -> LT .)
+    ID              reduce using rule 68 (OPREL -> EQUAL .)
+    NUMBER          reduce using rule 68 (OPREL -> EQUAL .)
 
 
 state 73
 
-    (62) OPREL -> LTE .
+    (62) FL -> LPARENT EL . RPARENT
+    (56) EL -> EL . OR TL
 
-    ID              reduce using rule 62 (OPREL -> LTE .)
-    NUMBER          reduce using rule 62 (OPREL -> LTE .)
+    RPARENT         shift and go to state 105
+    OR              shift and go to state 63
 
 
 state 74
 
-    (63) OPREL -> GT .
+    (30) STATEMENTS -> WHILE EL X . WHEND
 
-    ID              reduce using rule 63 (OPREL -> GT .)
-    NUMBER          reduce using rule 63 (OPREL -> GT .)
+    WHEND           shift and go to state 106
 
 
 state 75
 
-    (64) OPREL -> GTE .
-
-    ID              reduce using rule 64 (OPREL -> GTE .)
-    NUMBER          reduce using rule 64 (OPREL -> GTE .)
-
-
-state 76
-
-    (65) OPREL -> NE .
-
-    ID              reduce using rule 65 (OPREL -> NE .)
-    NUMBER          reduce using rule 65 (OPREL -> NE .)
-
-
-state 77
-
-    (66) OPREL -> EQUAL .
-
-    ID              reduce using rule 66 (OPREL -> EQUAL .)
-    NUMBER          reduce using rule 66 (OPREL -> EQUAL .)
-
-
-state 78
-
-    (60) FL -> LPARENT EL . RPARENT
-    (54) EL -> EL . OR TL
-
-    RPARENT         shift and go to state 108
-    OR              shift and go to state 68
-
-
-state 79
-
-    (26) STATEMENTS -> WHILE EL X . WHEND
-
-    WHEND           shift and go to state 109
-
-
-state 80
-
-    (27) STATEMENTS -> DO X LOOPUNTIL . EL ENDO
-    (54) EL -> . EL OR TL
-    (55) EL -> . TL NOT
-    (56) EL -> . TL
-    (57) TL -> . TL AND FL
-    (58) TL -> . FL
-    (59) FL -> . K OPREL K
-    (60) FL -> . LPARENT EL RPARENT
-    (67) K -> . ID
-    (68) K -> . NUMBER
+    (31) STATEMENTS -> DO X LOOPUNTIL . EL ENDO
+    (56) EL -> . EL OR TL
+    (57) EL -> . TL NOT
+    (58) EL -> . TL
+    (59) TL -> . TL AND FL
+    (60) TL -> . FL
+    (61) FL -> . K OPREL K
+    (62) FL -> . LPARENT EL RPARENT
+    (69) K -> . ID
+    (70) K -> . NUMBER
 
     LPARENT         shift and go to state 37
     ID              shift and go to state 38
     NUMBER          shift and go to state 39
 
-    EL                             shift and go to state 110
+    EL                             shift and go to state 107
     TL                             shift and go to state 34
     FL                             shift and go to state 35
     K                              shift and go to state 36
 
-state 81
+state 76
 
-    (28) STATEMENTS -> FOR O TO . E X NEXT
-    (45) E -> . E PLUS T
-    (46) E -> . E MINUS T
-    (47) E -> . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (32) STATEMENTS -> FOR ID TO . E X NEXT
+    (47) E -> . E PLUS T
+    (48) E -> . E MINUS T
+    (49) E -> . T
+    (50) T -> . T TIMES F
+    (51) T -> . T DIVIDE F
+    (52) T -> . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
 
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
     ID              shift and go to state 27
 
-    E                              shift and go to state 111
-    T                              shift and go to state 44
-    F                              shift and go to state 45
-    U                              shift and go to state 47
+    E                              shift and go to state 108
+    T                              shift and go to state 87
+    F                              shift and go to state 88
+    U                              shift and go to state 85
 
-state 82
-
-    (31) O -> E ASSIGN . E
-    (45) E -> . E PLUS T
-    (46) E -> . E MINUS T
-    (47) E -> . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    E                              shift and go to state 112
-    T                              shift and go to state 44
-    F                              shift and go to state 45
-    U                              shift and go to state 47
-
-state 83
-
-    (45) E -> E PLUS . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    T                              shift and go to state 113
-    F                              shift and go to state 45
-    U                              shift and go to state 47
-
-state 84
-
-    (46) E -> E MINUS . T
-    (48) T -> . T TIMES F
-    (49) T -> . T DIVIDE F
-    (50) T -> . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    T                              shift and go to state 114
-    F                              shift and go to state 45
-    U                              shift and go to state 47
-
-state 85
-
-    (48) T -> T TIMES . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    F                              shift and go to state 115
-    U                              shift and go to state 47
-
-state 86
-
-    (49) T -> T DIVIDE . F
-    (51) F -> . NUMBER
-    (52) F -> . U
-    (53) F -> . LPARENT E RPARENT
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
-
-    NUMBER          shift and go to state 46
-    LPARENT         shift and go to state 48
-    ID              shift and go to state 27
-
-    F                              shift and go to state 116
-    U                              shift and go to state 47
-
-state 87
-
-    (53) F -> LPARENT E . RPARENT
-    (45) E -> E . PLUS T
-    (46) E -> E . MINUS T
-
-    RPARENT         shift and go to state 117
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
-
-
-state 88
+state 77
 
     (17) SP -> SUBPROCEDURE ID X ENDSUB . SEMMICOLON SP
 
-    SEMMICOLON      shift and go to state 118
+    SEMMICOLON      shift and go to state 109
 
 
-state 89
+state 78
 
     (2) VARIABLE -> DIM IDLIST AS TIPO SEMMICOLON . VARIABLE
     (2) VARIABLE -> . DIM IDLIST AS TIPO SEMMICOLON VARIABLE
@@ -1571,265 +1311,405 @@ state 89
     GOSUB           reduce using rule 3 (VARIABLE -> .)
     END             reduce using rule 3 (VARIABLE -> .)
 
-    VARIABLE                       shift and go to state 119
+    VARIABLE                       shift and go to state 110
 
-state 90
+state 79
 
     (9) TIPO -> ARRAY DCLARRAY .
 
     SEMMICOLON      reduce using rule 9 (TIPO -> ARRAY DCLARRAY .)
 
 
-state 91
+state 80
 
     (12) DCLARRAY -> LBRACKET . Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 120
+    Z                              shift and go to state 111
 
-state 92
+state 81
 
     (10) TIPO -> MATRIX DCLMATRIX .
 
     SEMMICOLON      reduce using rule 10 (TIPO -> MATRIX DCLMATRIX .)
 
 
-state 93
+state 82
 
     (13) DCLMATRIX -> LBRACKET . Z RBRACKET LBRACKET Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 121
+    Z                              shift and go to state 112
 
-state 94
+state 83
 
     (11) TIPO -> CUBE DCLCUBE .
 
     SEMMICOLON      reduce using rule 11 (TIPO -> CUBE DCLCUBE .)
 
 
-state 95
+state 84
 
     (14) DCLCUBE -> LBRACKET . Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 122
+    Z                              shift and go to state 113
 
-state 96
+state 85
+
+    (54) F -> U .
+
+    SEMMICOLON      reduce using rule 54 (F -> U .)
+    LET             reduce using rule 54 (F -> U .)
+    PRINT           reduce using rule 54 (F -> U .)
+    INPUT           reduce using rule 54 (F -> U .)
+    CLS             reduce using rule 54 (F -> U .)
+    IF              reduce using rule 54 (F -> U .)
+    WHILE           reduce using rule 54 (F -> U .)
+    DO              reduce using rule 54 (F -> U .)
+    FOR             reduce using rule 54 (F -> U .)
+    GOSUB           reduce using rule 54 (F -> U .)
+    NEXT            reduce using rule 54 (F -> U .)
+    PLUS            reduce using rule 54 (F -> U .)
+    MINUS           reduce using rule 54 (F -> U .)
+    TIMES           reduce using rule 54 (F -> U .)
+    DIVIDE          reduce using rule 54 (F -> U .)
+    RPARENT         reduce using rule 54 (F -> U .)
+
+
+state 86
 
     (21) STATEMENTS -> LET U ASSIGN E .
-    (45) E -> E . PLUS T
-    (46) E -> E . MINUS T
+    (47) E -> E . PLUS T
+    (48) E -> E . MINUS T
 
     SEMMICOLON      reduce using rule 21 (STATEMENTS -> LET U ASSIGN E .)
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
+    PLUS            shift and go to state 114
+    MINUS           shift and go to state 115
 
 
-state 97
+state 87
+
+    (49) E -> T .
+    (50) T -> T . TIMES F
+    (51) T -> T . DIVIDE F
+
+    SEMMICOLON      reduce using rule 49 (E -> T .)
+    LET             reduce using rule 49 (E -> T .)
+    PRINT           reduce using rule 49 (E -> T .)
+    INPUT           reduce using rule 49 (E -> T .)
+    CLS             reduce using rule 49 (E -> T .)
+    IF              reduce using rule 49 (E -> T .)
+    WHILE           reduce using rule 49 (E -> T .)
+    DO              reduce using rule 49 (E -> T .)
+    FOR             reduce using rule 49 (E -> T .)
+    GOSUB           reduce using rule 49 (E -> T .)
+    NEXT            reduce using rule 49 (E -> T .)
+    PLUS            reduce using rule 49 (E -> T .)
+    MINUS           reduce using rule 49 (E -> T .)
+    RPARENT         reduce using rule 49 (E -> T .)
+    TIMES           shift and go to state 116
+    DIVIDE          shift and go to state 117
+
+
+state 88
+
+    (52) T -> F .
+
+    SEMMICOLON      reduce using rule 52 (T -> F .)
+    LET             reduce using rule 52 (T -> F .)
+    PRINT           reduce using rule 52 (T -> F .)
+    INPUT           reduce using rule 52 (T -> F .)
+    CLS             reduce using rule 52 (T -> F .)
+    IF              reduce using rule 52 (T -> F .)
+    WHILE           reduce using rule 52 (T -> F .)
+    DO              reduce using rule 52 (T -> F .)
+    FOR             reduce using rule 52 (T -> F .)
+    GOSUB           reduce using rule 52 (T -> F .)
+    NEXT            reduce using rule 52 (T -> F .)
+    PLUS            reduce using rule 52 (T -> F .)
+    MINUS           reduce using rule 52 (T -> F .)
+    TIMES           reduce using rule 52 (T -> F .)
+    DIVIDE          reduce using rule 52 (T -> F .)
+    RPARENT         reduce using rule 52 (T -> F .)
+
+
+state 89
+
+    (53) F -> NUMBER .
+
+    SEMMICOLON      reduce using rule 53 (F -> NUMBER .)
+    LET             reduce using rule 53 (F -> NUMBER .)
+    PRINT           reduce using rule 53 (F -> NUMBER .)
+    INPUT           reduce using rule 53 (F -> NUMBER .)
+    CLS             reduce using rule 53 (F -> NUMBER .)
+    IF              reduce using rule 53 (F -> NUMBER .)
+    WHILE           reduce using rule 53 (F -> NUMBER .)
+    DO              reduce using rule 53 (F -> NUMBER .)
+    FOR             reduce using rule 53 (F -> NUMBER .)
+    GOSUB           reduce using rule 53 (F -> NUMBER .)
+    NEXT            reduce using rule 53 (F -> NUMBER .)
+    PLUS            reduce using rule 53 (F -> NUMBER .)
+    MINUS           reduce using rule 53 (F -> NUMBER .)
+    TIMES           reduce using rule 53 (F -> NUMBER .)
+    DIVIDE          reduce using rule 53 (F -> NUMBER .)
+    RPARENT         reduce using rule 53 (F -> NUMBER .)
+
+
+state 90
+
+    (55) F -> LPARENT . E RPARENT
+    (47) E -> . E PLUS T
+    (48) E -> . E MINUS T
+    (49) E -> . T
+    (50) T -> . T TIMES F
+    (51) T -> . T DIVIDE F
+    (52) T -> . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
+    ID              shift and go to state 27
+
+    E                              shift and go to state 118
+    T                              shift and go to state 87
+    F                              shift and go to state 88
+    U                              shift and go to state 85
+
+state 91
 
     (12) DCLARRAY -> LBRACKET Z . RBRACKET
     (13) DCLMATRIX -> LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
     (14) DCLCUBE -> LBRACKET Z . RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    RBRACKET        shift and go to state 123
+    RBRACKET        shift and go to state 119
 
 
-state 98
+state 92
 
     (15) Z -> NUMBER .
 
     RBRACKET        reduce using rule 15 (Z -> NUMBER .)
 
 
-state 99
+state 93
 
     (16) Z -> ID .
 
     RBRACKET        reduce using rule 16 (Z -> ID .)
 
 
+state 94
+
+    (38) Q -> LPARENT VAR RPARENT .
+
+    SEMMICOLON      reduce using rule 38 (Q -> LPARENT VAR RPARENT .)
+
+
+state 95
+
+    (40) TEXT -> LPARENT STRING H . RPARENT
+
+    RPARENT         shift and go to state 120
+
+
+state 96
+
+    (42) H -> PLUS . STRING H
+    (43) H -> PLUS . U H
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    STRING          shift and go to state 121
+    ID              shift and go to state 27
+
+    U                              shift and go to state 122
+
+state 97
+
+    (25) VAR -> ID DCLARRAY .
+
+    SEMMICOLON      reduce using rule 25 (VAR -> ID DCLARRAY .)
+    RPARENT         reduce using rule 25 (VAR -> ID DCLARRAY .)
+
+
+state 98
+
+    (26) VAR -> ID DCLMATRIX .
+
+    SEMMICOLON      reduce using rule 26 (VAR -> ID DCLMATRIX .)
+    RPARENT         reduce using rule 26 (VAR -> ID DCLMATRIX .)
+
+
+state 99
+
+    (27) VAR -> ID DCLCUBE .
+
+    SEMMICOLON      reduce using rule 27 (VAR -> ID DCLCUBE .)
+    RPARENT         reduce using rule 27 (VAR -> ID DCLCUBE .)
+
+
 state 100
 
-    (36) Q -> LPARENT U RPARENT .
+    (23) STATEMENTS -> INPUT TEXT GTGT VAR .
 
-    SEMMICOLON      reduce using rule 36 (Q -> LPARENT U RPARENT .)
+    SEMMICOLON      reduce using rule 23 (STATEMENTS -> INPUT TEXT GTGT VAR .)
 
 
 state 101
 
-    (38) TEXT -> LPARENT STRING H . RPARENT
+    (29) STATEMENTS -> IF EL THEN X . ELSE1 ENDIF
+    (45) ELSE1 -> . ELSE X
+    (46) ELSE1 -> .
 
-    RPARENT         shift and go to state 124
+    ELSE            shift and go to state 124
+    ENDIF           reduce using rule 46 (ELSE1 -> .)
 
+    ELSE1                          shift and go to state 123
 
 state 102
 
-    (40) H -> PLUS . STRING H
-    (41) H -> PLUS . U H
-    (32) U -> . ID
-    (33) U -> . ID DCLARRAY
-    (34) U -> . ID DCLMATRIX
-    (35) U -> . ID DCLCUBE
+    (56) EL -> EL OR TL .
+    (59) TL -> TL . AND FL
 
-    STRING          shift and go to state 125
-    ID              shift and go to state 27
+    THEN            reduce using rule 56 (EL -> EL OR TL .)
+    LET             reduce using rule 56 (EL -> EL OR TL .)
+    PRINT           reduce using rule 56 (EL -> EL OR TL .)
+    INPUT           reduce using rule 56 (EL -> EL OR TL .)
+    CLS             reduce using rule 56 (EL -> EL OR TL .)
+    IF              reduce using rule 56 (EL -> EL OR TL .)
+    WHILE           reduce using rule 56 (EL -> EL OR TL .)
+    DO              reduce using rule 56 (EL -> EL OR TL .)
+    FOR             reduce using rule 56 (EL -> EL OR TL .)
+    GOSUB           reduce using rule 56 (EL -> EL OR TL .)
+    WHEND           reduce using rule 56 (EL -> EL OR TL .)
+    ENDO            reduce using rule 56 (EL -> EL OR TL .)
+    OR              reduce using rule 56 (EL -> EL OR TL .)
+    RPARENT         reduce using rule 56 (EL -> EL OR TL .)
+    AND             shift and go to state 65
 
-    U                              shift and go to state 126
 
 state 103
 
-    (23) STATEMENTS -> INPUT TEXT GTGT U .
+    (59) TL -> TL AND FL .
 
-    SEMMICOLON      reduce using rule 23 (STATEMENTS -> INPUT TEXT GTGT U .)
+    THEN            reduce using rule 59 (TL -> TL AND FL .)
+    LET             reduce using rule 59 (TL -> TL AND FL .)
+    PRINT           reduce using rule 59 (TL -> TL AND FL .)
+    INPUT           reduce using rule 59 (TL -> TL AND FL .)
+    CLS             reduce using rule 59 (TL -> TL AND FL .)
+    IF              reduce using rule 59 (TL -> TL AND FL .)
+    WHILE           reduce using rule 59 (TL -> TL AND FL .)
+    DO              reduce using rule 59 (TL -> TL AND FL .)
+    FOR             reduce using rule 59 (TL -> TL AND FL .)
+    GOSUB           reduce using rule 59 (TL -> TL AND FL .)
+    WHEND           reduce using rule 59 (TL -> TL AND FL .)
+    ENDO            reduce using rule 59 (TL -> TL AND FL .)
+    OR              reduce using rule 59 (TL -> TL AND FL .)
+    NOT             reduce using rule 59 (TL -> TL AND FL .)
+    AND             reduce using rule 59 (TL -> TL AND FL .)
+    RPARENT         reduce using rule 59 (TL -> TL AND FL .)
 
 
 state 104
 
-    (25) STATEMENTS -> IF EL THEN X . ELSE1 ENDIF
-    (43) ELSE1 -> . ELSE X
-    (44) ELSE1 -> .
+    (61) FL -> K OPREL K .
 
-    ELSE            shift and go to state 128
-    ENDIF           reduce using rule 44 (ELSE1 -> .)
+    THEN            reduce using rule 61 (FL -> K OPREL K .)
+    LET             reduce using rule 61 (FL -> K OPREL K .)
+    PRINT           reduce using rule 61 (FL -> K OPREL K .)
+    INPUT           reduce using rule 61 (FL -> K OPREL K .)
+    CLS             reduce using rule 61 (FL -> K OPREL K .)
+    IF              reduce using rule 61 (FL -> K OPREL K .)
+    WHILE           reduce using rule 61 (FL -> K OPREL K .)
+    DO              reduce using rule 61 (FL -> K OPREL K .)
+    FOR             reduce using rule 61 (FL -> K OPREL K .)
+    GOSUB           reduce using rule 61 (FL -> K OPREL K .)
+    WHEND           reduce using rule 61 (FL -> K OPREL K .)
+    ENDO            reduce using rule 61 (FL -> K OPREL K .)
+    OR              reduce using rule 61 (FL -> K OPREL K .)
+    NOT             reduce using rule 61 (FL -> K OPREL K .)
+    AND             reduce using rule 61 (FL -> K OPREL K .)
+    RPARENT         reduce using rule 61 (FL -> K OPREL K .)
 
-    ELSE1                          shift and go to state 127
 
 state 105
 
-    (54) EL -> EL OR TL .
-    (57) TL -> TL . AND FL
+    (62) FL -> LPARENT EL RPARENT .
 
-    THEN            reduce using rule 54 (EL -> EL OR TL .)
-    LET             reduce using rule 54 (EL -> EL OR TL .)
-    PRINT           reduce using rule 54 (EL -> EL OR TL .)
-    INPUT           reduce using rule 54 (EL -> EL OR TL .)
-    CLS             reduce using rule 54 (EL -> EL OR TL .)
-    IF              reduce using rule 54 (EL -> EL OR TL .)
-    WHILE           reduce using rule 54 (EL -> EL OR TL .)
-    DO              reduce using rule 54 (EL -> EL OR TL .)
-    FOR             reduce using rule 54 (EL -> EL OR TL .)
-    GOSUB           reduce using rule 54 (EL -> EL OR TL .)
-    WHEND           reduce using rule 54 (EL -> EL OR TL .)
-    ENDO            reduce using rule 54 (EL -> EL OR TL .)
-    OR              reduce using rule 54 (EL -> EL OR TL .)
-    RPARENT         reduce using rule 54 (EL -> EL OR TL .)
-    AND             shift and go to state 70
+    THEN            reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    LET             reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    PRINT           reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    INPUT           reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    CLS             reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    IF              reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    WHILE           reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    DO              reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    FOR             reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    GOSUB           reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    WHEND           reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    ENDO            reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    OR              reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    NOT             reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    AND             reduce using rule 62 (FL -> LPARENT EL RPARENT .)
+    RPARENT         reduce using rule 62 (FL -> LPARENT EL RPARENT .)
 
 
 state 106
 
-    (57) TL -> TL AND FL .
+    (30) STATEMENTS -> WHILE EL X WHEND .
 
-    THEN            reduce using rule 57 (TL -> TL AND FL .)
-    LET             reduce using rule 57 (TL -> TL AND FL .)
-    PRINT           reduce using rule 57 (TL -> TL AND FL .)
-    INPUT           reduce using rule 57 (TL -> TL AND FL .)
-    CLS             reduce using rule 57 (TL -> TL AND FL .)
-    IF              reduce using rule 57 (TL -> TL AND FL .)
-    WHILE           reduce using rule 57 (TL -> TL AND FL .)
-    DO              reduce using rule 57 (TL -> TL AND FL .)
-    FOR             reduce using rule 57 (TL -> TL AND FL .)
-    GOSUB           reduce using rule 57 (TL -> TL AND FL .)
-    WHEND           reduce using rule 57 (TL -> TL AND FL .)
-    ENDO            reduce using rule 57 (TL -> TL AND FL .)
-    OR              reduce using rule 57 (TL -> TL AND FL .)
-    NOT             reduce using rule 57 (TL -> TL AND FL .)
-    AND             reduce using rule 57 (TL -> TL AND FL .)
-    RPARENT         reduce using rule 57 (TL -> TL AND FL .)
+    SEMMICOLON      reduce using rule 30 (STATEMENTS -> WHILE EL X WHEND .)
 
 
 state 107
 
-    (59) FL -> K OPREL K .
+    (31) STATEMENTS -> DO X LOOPUNTIL EL . ENDO
+    (56) EL -> EL . OR TL
 
-    THEN            reduce using rule 59 (FL -> K OPREL K .)
-    LET             reduce using rule 59 (FL -> K OPREL K .)
-    PRINT           reduce using rule 59 (FL -> K OPREL K .)
-    INPUT           reduce using rule 59 (FL -> K OPREL K .)
-    CLS             reduce using rule 59 (FL -> K OPREL K .)
-    IF              reduce using rule 59 (FL -> K OPREL K .)
-    WHILE           reduce using rule 59 (FL -> K OPREL K .)
-    DO              reduce using rule 59 (FL -> K OPREL K .)
-    FOR             reduce using rule 59 (FL -> K OPREL K .)
-    GOSUB           reduce using rule 59 (FL -> K OPREL K .)
-    WHEND           reduce using rule 59 (FL -> K OPREL K .)
-    ENDO            reduce using rule 59 (FL -> K OPREL K .)
-    OR              reduce using rule 59 (FL -> K OPREL K .)
-    NOT             reduce using rule 59 (FL -> K OPREL K .)
-    AND             reduce using rule 59 (FL -> K OPREL K .)
-    RPARENT         reduce using rule 59 (FL -> K OPREL K .)
+    ENDO            shift and go to state 125
+    OR              shift and go to state 63
 
 
 state 108
 
-    (60) FL -> LPARENT EL RPARENT .
-
-    THEN            reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    LET             reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    PRINT           reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    INPUT           reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    CLS             reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    IF              reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    WHILE           reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    DO              reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    FOR             reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    GOSUB           reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    WHEND           reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    ENDO            reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    OR              reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    NOT             reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    AND             reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-    RPARENT         reduce using rule 60 (FL -> LPARENT EL RPARENT .)
-
-
-state 109
-
-    (26) STATEMENTS -> WHILE EL X WHEND .
-
-    SEMMICOLON      reduce using rule 26 (STATEMENTS -> WHILE EL X WHEND .)
-
-
-state 110
-
-    (27) STATEMENTS -> DO X LOOPUNTIL EL . ENDO
-    (54) EL -> EL . OR TL
-
-    ENDO            shift and go to state 129
-    OR              shift and go to state 68
-
-
-state 111
-
-    (28) STATEMENTS -> FOR O TO E . X NEXT
-    (45) E -> E . PLUS T
-    (46) E -> E . MINUS T
+    (32) STATEMENTS -> FOR ID TO E . X NEXT
+    (47) E -> E . PLUS T
+    (48) E -> E . MINUS T
     (19) X -> . STATEMENTS SEMMICOLON X
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
+    PLUS            shift and go to state 114
+    MINUS           shift and go to state 115
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
     ELSE            reduce using rule 20 (X -> .)
@@ -1847,145 +1727,10 @@ state 111
     FOR             shift and go to state 19
     GOSUB           shift and go to state 20
 
-    X                              shift and go to state 130
+    X                              shift and go to state 126
     STATEMENTS                     shift and go to state 11
 
-state 112
-
-    (31) O -> E ASSIGN E .
-    (45) E -> E . PLUS T
-    (46) E -> E . MINUS T
-
-    TO              reduce using rule 31 (O -> E ASSIGN E .)
-    PLUS            shift and go to state 83
-    MINUS           shift and go to state 84
-
-
-state 113
-
-    (45) E -> E PLUS T .
-    (48) T -> T . TIMES F
-    (49) T -> T . DIVIDE F
-
-    SEMMICOLON      reduce using rule 45 (E -> E PLUS T .)
-    LET             reduce using rule 45 (E -> E PLUS T .)
-    PRINT           reduce using rule 45 (E -> E PLUS T .)
-    INPUT           reduce using rule 45 (E -> E PLUS T .)
-    CLS             reduce using rule 45 (E -> E PLUS T .)
-    IF              reduce using rule 45 (E -> E PLUS T .)
-    WHILE           reduce using rule 45 (E -> E PLUS T .)
-    DO              reduce using rule 45 (E -> E PLUS T .)
-    FOR             reduce using rule 45 (E -> E PLUS T .)
-    GOSUB           reduce using rule 45 (E -> E PLUS T .)
-    NEXT            reduce using rule 45 (E -> E PLUS T .)
-    TO              reduce using rule 45 (E -> E PLUS T .)
-    ASSIGN          reduce using rule 45 (E -> E PLUS T .)
-    PLUS            reduce using rule 45 (E -> E PLUS T .)
-    MINUS           reduce using rule 45 (E -> E PLUS T .)
-    RPARENT         reduce using rule 45 (E -> E PLUS T .)
-    TIMES           shift and go to state 85
-    DIVIDE          shift and go to state 86
-
-
-state 114
-
-    (46) E -> E MINUS T .
-    (48) T -> T . TIMES F
-    (49) T -> T . DIVIDE F
-
-    SEMMICOLON      reduce using rule 46 (E -> E MINUS T .)
-    LET             reduce using rule 46 (E -> E MINUS T .)
-    PRINT           reduce using rule 46 (E -> E MINUS T .)
-    INPUT           reduce using rule 46 (E -> E MINUS T .)
-    CLS             reduce using rule 46 (E -> E MINUS T .)
-    IF              reduce using rule 46 (E -> E MINUS T .)
-    WHILE           reduce using rule 46 (E -> E MINUS T .)
-    DO              reduce using rule 46 (E -> E MINUS T .)
-    FOR             reduce using rule 46 (E -> E MINUS T .)
-    GOSUB           reduce using rule 46 (E -> E MINUS T .)
-    NEXT            reduce using rule 46 (E -> E MINUS T .)
-    TO              reduce using rule 46 (E -> E MINUS T .)
-    ASSIGN          reduce using rule 46 (E -> E MINUS T .)
-    PLUS            reduce using rule 46 (E -> E MINUS T .)
-    MINUS           reduce using rule 46 (E -> E MINUS T .)
-    RPARENT         reduce using rule 46 (E -> E MINUS T .)
-    TIMES           shift and go to state 85
-    DIVIDE          shift and go to state 86
-
-
-state 115
-
-    (48) T -> T TIMES F .
-
-    SEMMICOLON      reduce using rule 48 (T -> T TIMES F .)
-    LET             reduce using rule 48 (T -> T TIMES F .)
-    PRINT           reduce using rule 48 (T -> T TIMES F .)
-    INPUT           reduce using rule 48 (T -> T TIMES F .)
-    CLS             reduce using rule 48 (T -> T TIMES F .)
-    IF              reduce using rule 48 (T -> T TIMES F .)
-    WHILE           reduce using rule 48 (T -> T TIMES F .)
-    DO              reduce using rule 48 (T -> T TIMES F .)
-    FOR             reduce using rule 48 (T -> T TIMES F .)
-    GOSUB           reduce using rule 48 (T -> T TIMES F .)
-    NEXT            reduce using rule 48 (T -> T TIMES F .)
-    TO              reduce using rule 48 (T -> T TIMES F .)
-    ASSIGN          reduce using rule 48 (T -> T TIMES F .)
-    PLUS            reduce using rule 48 (T -> T TIMES F .)
-    MINUS           reduce using rule 48 (T -> T TIMES F .)
-    TIMES           reduce using rule 48 (T -> T TIMES F .)
-    DIVIDE          reduce using rule 48 (T -> T TIMES F .)
-    RPARENT         reduce using rule 48 (T -> T TIMES F .)
-
-
-state 116
-
-    (49) T -> T DIVIDE F .
-
-    SEMMICOLON      reduce using rule 49 (T -> T DIVIDE F .)
-    LET             reduce using rule 49 (T -> T DIVIDE F .)
-    PRINT           reduce using rule 49 (T -> T DIVIDE F .)
-    INPUT           reduce using rule 49 (T -> T DIVIDE F .)
-    CLS             reduce using rule 49 (T -> T DIVIDE F .)
-    IF              reduce using rule 49 (T -> T DIVIDE F .)
-    WHILE           reduce using rule 49 (T -> T DIVIDE F .)
-    DO              reduce using rule 49 (T -> T DIVIDE F .)
-    FOR             reduce using rule 49 (T -> T DIVIDE F .)
-    GOSUB           reduce using rule 49 (T -> T DIVIDE F .)
-    NEXT            reduce using rule 49 (T -> T DIVIDE F .)
-    TO              reduce using rule 49 (T -> T DIVIDE F .)
-    ASSIGN          reduce using rule 49 (T -> T DIVIDE F .)
-    PLUS            reduce using rule 49 (T -> T DIVIDE F .)
-    MINUS           reduce using rule 49 (T -> T DIVIDE F .)
-    TIMES           reduce using rule 49 (T -> T DIVIDE F .)
-    DIVIDE          reduce using rule 49 (T -> T DIVIDE F .)
-    RPARENT         reduce using rule 49 (T -> T DIVIDE F .)
-
-
-state 117
-
-    (53) F -> LPARENT E RPARENT .
-
-    SEMMICOLON      reduce using rule 53 (F -> LPARENT E RPARENT .)
-    LET             reduce using rule 53 (F -> LPARENT E RPARENT .)
-    PRINT           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    INPUT           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    CLS             reduce using rule 53 (F -> LPARENT E RPARENT .)
-    IF              reduce using rule 53 (F -> LPARENT E RPARENT .)
-    WHILE           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    DO              reduce using rule 53 (F -> LPARENT E RPARENT .)
-    FOR             reduce using rule 53 (F -> LPARENT E RPARENT .)
-    GOSUB           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    NEXT            reduce using rule 53 (F -> LPARENT E RPARENT .)
-    TO              reduce using rule 53 (F -> LPARENT E RPARENT .)
-    ASSIGN          reduce using rule 53 (F -> LPARENT E RPARENT .)
-    PLUS            reduce using rule 53 (F -> LPARENT E RPARENT .)
-    MINUS           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    TIMES           reduce using rule 53 (F -> LPARENT E RPARENT .)
-    DIVIDE          reduce using rule 53 (F -> LPARENT E RPARENT .)
-    RPARENT         reduce using rule 53 (F -> LPARENT E RPARENT .)
-
-
-state 118
+state 109
 
     (17) SP -> SUBPROCEDURE ID X ENDSUB SEMMICOLON . SP
     (17) SP -> . SUBPROCEDURE ID X ENDSUB SEMMICOLON SP
@@ -2003,9 +1748,9 @@ state 118
     GOSUB           reduce using rule 18 (SP -> .)
     END             reduce using rule 18 (SP -> .)
 
-    SP                             shift and go to state 131
+    SP                             shift and go to state 127
 
-state 119
+state 110
 
     (2) VARIABLE -> DIM IDLIST AS TIPO SEMMICOLON VARIABLE .
 
@@ -2022,28 +1767,119 @@ state 119
     END             reduce using rule 2 (VARIABLE -> DIM IDLIST AS TIPO SEMMICOLON VARIABLE .)
 
 
-state 120
+state 111
 
     (12) DCLARRAY -> LBRACKET Z . RBRACKET
 
-    RBRACKET        shift and go to state 132
+    RBRACKET        shift and go to state 128
 
 
-state 121
+state 112
 
     (13) DCLMATRIX -> LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
 
-    RBRACKET        shift and go to state 133
+    RBRACKET        shift and go to state 129
 
 
-state 122
+state 113
 
     (14) DCLCUBE -> LBRACKET Z . RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
-    RBRACKET        shift and go to state 134
+    RBRACKET        shift and go to state 130
 
 
-state 123
+state 114
+
+    (47) E -> E PLUS . T
+    (50) T -> . T TIMES F
+    (51) T -> . T DIVIDE F
+    (52) T -> . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
+    ID              shift and go to state 27
+
+    T                              shift and go to state 131
+    F                              shift and go to state 88
+    U                              shift and go to state 85
+
+state 115
+
+    (48) E -> E MINUS . T
+    (50) T -> . T TIMES F
+    (51) T -> . T DIVIDE F
+    (52) T -> . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
+    ID              shift and go to state 27
+
+    T                              shift and go to state 132
+    F                              shift and go to state 88
+    U                              shift and go to state 85
+
+state 116
+
+    (50) T -> T TIMES . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
+    ID              shift and go to state 27
+
+    F                              shift and go to state 133
+    U                              shift and go to state 85
+
+state 117
+
+    (51) T -> T DIVIDE . F
+    (53) F -> . NUMBER
+    (54) F -> . U
+    (55) F -> . LPARENT E RPARENT
+    (34) U -> . ID
+    (35) U -> . ID DCLARRAY
+    (36) U -> . ID DCLMATRIX
+    (37) U -> . ID DCLCUBE
+
+    NUMBER          shift and go to state 89
+    LPARENT         shift and go to state 90
+    ID              shift and go to state 27
+
+    F                              shift and go to state 134
+    U                              shift and go to state 85
+
+state 118
+
+    (55) F -> LPARENT E . RPARENT
+    (47) E -> E . PLUS T
+    (48) E -> E . MINUS T
+
+    RPARENT         shift and go to state 135
+    PLUS            shift and go to state 114
+    MINUS           shift and go to state 115
+
+
+state 119
 
     (12) DCLARRAY -> LBRACKET Z RBRACKET .
     (13) DCLMATRIX -> LBRACKET Z RBRACKET . LBRACKET Z RBRACKET
@@ -2063,66 +1899,65 @@ state 123
     FOR             reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     GOSUB           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     NEXT            reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
-    TO              reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     MINUS           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     TIMES           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     DIVIDE          reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
-    LBRACKET        shift and go to state 135
+    LBRACKET        shift and go to state 136
+
+
+state 120
+
+    (40) TEXT -> LPARENT STRING H RPARENT .
+
+    GTGT            reduce using rule 40 (TEXT -> LPARENT STRING H RPARENT .)
+    SEMMICOLON      reduce using rule 40 (TEXT -> LPARENT STRING H RPARENT .)
+
+
+state 121
+
+    (42) H -> PLUS STRING . H
+    (42) H -> . PLUS STRING H
+    (43) H -> . PLUS U H
+    (44) H -> .
+
+    PLUS            shift and go to state 96
+    RPARENT         reduce using rule 44 (H -> .)
+
+    H                              shift and go to state 137
+
+state 122
+
+    (43) H -> PLUS U . H
+    (42) H -> . PLUS STRING H
+    (43) H -> . PLUS U H
+    (44) H -> .
+
+    PLUS            shift and go to state 96
+    RPARENT         reduce using rule 44 (H -> .)
+
+    H                              shift and go to state 138
+
+state 123
+
+    (29) STATEMENTS -> IF EL THEN X ELSE1 . ENDIF
+
+    ENDIF           shift and go to state 139
 
 
 state 124
 
-    (38) TEXT -> LPARENT STRING H RPARENT .
-
-    GTGT            reduce using rule 38 (TEXT -> LPARENT STRING H RPARENT .)
-    SEMMICOLON      reduce using rule 38 (TEXT -> LPARENT STRING H RPARENT .)
-
-
-state 125
-
-    (40) H -> PLUS STRING . H
-    (40) H -> . PLUS STRING H
-    (41) H -> . PLUS U H
-    (42) H -> .
-
-    PLUS            shift and go to state 102
-    RPARENT         reduce using rule 42 (H -> .)
-
-    H                              shift and go to state 136
-
-state 126
-
-    (41) H -> PLUS U . H
-    (40) H -> . PLUS STRING H
-    (41) H -> . PLUS U H
-    (42) H -> .
-
-    PLUS            shift and go to state 102
-    RPARENT         reduce using rule 42 (H -> .)
-
-    H                              shift and go to state 137
-
-state 127
-
-    (25) STATEMENTS -> IF EL THEN X ELSE1 . ENDIF
-
-    ENDIF           shift and go to state 138
-
-
-state 128
-
-    (43) ELSE1 -> ELSE . X
+    (45) ELSE1 -> ELSE . X
     (19) X -> . STATEMENTS SEMMICOLON X
     (20) X -> .
     (21) STATEMENTS -> . LET U ASSIGN E
     (22) STATEMENTS -> . PRINT Q
-    (23) STATEMENTS -> . INPUT TEXT GTGT U
-    (24) STATEMENTS -> . CLS
-    (25) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
-    (26) STATEMENTS -> . WHILE EL X WHEND
-    (27) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
-    (28) STATEMENTS -> . FOR O TO E X NEXT
-    (29) STATEMENTS -> . GOSUB ID
+    (23) STATEMENTS -> . INPUT TEXT GTGT VAR
+    (28) STATEMENTS -> . CLS
+    (29) STATEMENTS -> . IF EL THEN X ELSE1 ENDIF
+    (30) STATEMENTS -> . WHILE EL X WHEND
+    (31) STATEMENTS -> . DO X LOOPUNTIL EL ENDO
+    (32) STATEMENTS -> . FOR ID TO E X NEXT
+    (33) STATEMENTS -> . GOSUB ID
 
     END             reduce using rule 20 (X -> .)
     ENDSUB          reduce using rule 20 (X -> .)
@@ -2141,24 +1976,24 @@ state 128
     FOR             shift and go to state 19
     GOSUB           shift and go to state 20
 
-    X                              shift and go to state 139
+    X                              shift and go to state 140
     STATEMENTS                     shift and go to state 11
 
-state 129
+state 125
 
-    (27) STATEMENTS -> DO X LOOPUNTIL EL ENDO .
+    (31) STATEMENTS -> DO X LOOPUNTIL EL ENDO .
 
-    SEMMICOLON      reduce using rule 27 (STATEMENTS -> DO X LOOPUNTIL EL ENDO .)
-
-
-state 130
-
-    (28) STATEMENTS -> FOR O TO E X . NEXT
-
-    NEXT            shift and go to state 140
+    SEMMICOLON      reduce using rule 31 (STATEMENTS -> DO X LOOPUNTIL EL ENDO .)
 
 
-state 131
+state 126
+
+    (32) STATEMENTS -> FOR ID TO E X . NEXT
+
+    NEXT            shift and go to state 141
+
+
+state 127
 
     (17) SP -> SUBPROCEDURE ID X ENDSUB SEMMICOLON SP .
 
@@ -2174,7 +2009,7 @@ state 131
     END             reduce using rule 17 (SP -> SUBPROCEDURE ID X ENDSUB SEMMICOLON SP .)
 
 
-state 132
+state 128
 
     (12) DCLARRAY -> LBRACKET Z RBRACKET .
 
@@ -2192,146 +2027,234 @@ state 132
     FOR             reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     GOSUB           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     NEXT            reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
-    TO              reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     MINUS           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     TIMES           reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
     DIVIDE          reduce using rule 12 (DCLARRAY -> LBRACKET Z RBRACKET .)
 
 
-state 133
+state 129
 
     (13) DCLMATRIX -> LBRACKET Z RBRACKET . LBRACKET Z RBRACKET
-
-    LBRACKET        shift and go to state 141
-
-
-state 134
-
-    (14) DCLCUBE -> LBRACKET Z RBRACKET . LBRACKET Z RBRACKET LBRACKET Z RBRACKET
 
     LBRACKET        shift and go to state 142
 
 
+state 130
+
+    (14) DCLCUBE -> LBRACKET Z RBRACKET . LBRACKET Z RBRACKET LBRACKET Z RBRACKET
+
+    LBRACKET        shift and go to state 143
+
+
+state 131
+
+    (47) E -> E PLUS T .
+    (50) T -> T . TIMES F
+    (51) T -> T . DIVIDE F
+
+    SEMMICOLON      reduce using rule 47 (E -> E PLUS T .)
+    LET             reduce using rule 47 (E -> E PLUS T .)
+    PRINT           reduce using rule 47 (E -> E PLUS T .)
+    INPUT           reduce using rule 47 (E -> E PLUS T .)
+    CLS             reduce using rule 47 (E -> E PLUS T .)
+    IF              reduce using rule 47 (E -> E PLUS T .)
+    WHILE           reduce using rule 47 (E -> E PLUS T .)
+    DO              reduce using rule 47 (E -> E PLUS T .)
+    FOR             reduce using rule 47 (E -> E PLUS T .)
+    GOSUB           reduce using rule 47 (E -> E PLUS T .)
+    NEXT            reduce using rule 47 (E -> E PLUS T .)
+    PLUS            reduce using rule 47 (E -> E PLUS T .)
+    MINUS           reduce using rule 47 (E -> E PLUS T .)
+    RPARENT         reduce using rule 47 (E -> E PLUS T .)
+    TIMES           shift and go to state 116
+    DIVIDE          shift and go to state 117
+
+
+state 132
+
+    (48) E -> E MINUS T .
+    (50) T -> T . TIMES F
+    (51) T -> T . DIVIDE F
+
+    SEMMICOLON      reduce using rule 48 (E -> E MINUS T .)
+    LET             reduce using rule 48 (E -> E MINUS T .)
+    PRINT           reduce using rule 48 (E -> E MINUS T .)
+    INPUT           reduce using rule 48 (E -> E MINUS T .)
+    CLS             reduce using rule 48 (E -> E MINUS T .)
+    IF              reduce using rule 48 (E -> E MINUS T .)
+    WHILE           reduce using rule 48 (E -> E MINUS T .)
+    DO              reduce using rule 48 (E -> E MINUS T .)
+    FOR             reduce using rule 48 (E -> E MINUS T .)
+    GOSUB           reduce using rule 48 (E -> E MINUS T .)
+    NEXT            reduce using rule 48 (E -> E MINUS T .)
+    PLUS            reduce using rule 48 (E -> E MINUS T .)
+    MINUS           reduce using rule 48 (E -> E MINUS T .)
+    RPARENT         reduce using rule 48 (E -> E MINUS T .)
+    TIMES           shift and go to state 116
+    DIVIDE          shift and go to state 117
+
+
+state 133
+
+    (50) T -> T TIMES F .
+
+    SEMMICOLON      reduce using rule 50 (T -> T TIMES F .)
+    LET             reduce using rule 50 (T -> T TIMES F .)
+    PRINT           reduce using rule 50 (T -> T TIMES F .)
+    INPUT           reduce using rule 50 (T -> T TIMES F .)
+    CLS             reduce using rule 50 (T -> T TIMES F .)
+    IF              reduce using rule 50 (T -> T TIMES F .)
+    WHILE           reduce using rule 50 (T -> T TIMES F .)
+    DO              reduce using rule 50 (T -> T TIMES F .)
+    FOR             reduce using rule 50 (T -> T TIMES F .)
+    GOSUB           reduce using rule 50 (T -> T TIMES F .)
+    NEXT            reduce using rule 50 (T -> T TIMES F .)
+    PLUS            reduce using rule 50 (T -> T TIMES F .)
+    MINUS           reduce using rule 50 (T -> T TIMES F .)
+    TIMES           reduce using rule 50 (T -> T TIMES F .)
+    DIVIDE          reduce using rule 50 (T -> T TIMES F .)
+    RPARENT         reduce using rule 50 (T -> T TIMES F .)
+
+
+state 134
+
+    (51) T -> T DIVIDE F .
+
+    SEMMICOLON      reduce using rule 51 (T -> T DIVIDE F .)
+    LET             reduce using rule 51 (T -> T DIVIDE F .)
+    PRINT           reduce using rule 51 (T -> T DIVIDE F .)
+    INPUT           reduce using rule 51 (T -> T DIVIDE F .)
+    CLS             reduce using rule 51 (T -> T DIVIDE F .)
+    IF              reduce using rule 51 (T -> T DIVIDE F .)
+    WHILE           reduce using rule 51 (T -> T DIVIDE F .)
+    DO              reduce using rule 51 (T -> T DIVIDE F .)
+    FOR             reduce using rule 51 (T -> T DIVIDE F .)
+    GOSUB           reduce using rule 51 (T -> T DIVIDE F .)
+    NEXT            reduce using rule 51 (T -> T DIVIDE F .)
+    PLUS            reduce using rule 51 (T -> T DIVIDE F .)
+    MINUS           reduce using rule 51 (T -> T DIVIDE F .)
+    TIMES           reduce using rule 51 (T -> T DIVIDE F .)
+    DIVIDE          reduce using rule 51 (T -> T DIVIDE F .)
+    RPARENT         reduce using rule 51 (T -> T DIVIDE F .)
+
+
 state 135
+
+    (55) F -> LPARENT E RPARENT .
+
+    SEMMICOLON      reduce using rule 55 (F -> LPARENT E RPARENT .)
+    LET             reduce using rule 55 (F -> LPARENT E RPARENT .)
+    PRINT           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    INPUT           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    CLS             reduce using rule 55 (F -> LPARENT E RPARENT .)
+    IF              reduce using rule 55 (F -> LPARENT E RPARENT .)
+    WHILE           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    DO              reduce using rule 55 (F -> LPARENT E RPARENT .)
+    FOR             reduce using rule 55 (F -> LPARENT E RPARENT .)
+    GOSUB           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    NEXT            reduce using rule 55 (F -> LPARENT E RPARENT .)
+    PLUS            reduce using rule 55 (F -> LPARENT E RPARENT .)
+    MINUS           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    TIMES           reduce using rule 55 (F -> LPARENT E RPARENT .)
+    DIVIDE          reduce using rule 55 (F -> LPARENT E RPARENT .)
+    RPARENT         reduce using rule 55 (F -> LPARENT E RPARENT .)
+
+
+state 136
 
     (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET . Z RBRACKET
     (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET . Z RBRACKET LBRACKET Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 143
-
-state 136
-
-    (40) H -> PLUS STRING H .
-
-    RPARENT         reduce using rule 40 (H -> PLUS STRING H .)
-
+    Z                              shift and go to state 144
 
 state 137
 
-    (41) H -> PLUS U H .
+    (42) H -> PLUS STRING H .
 
-    RPARENT         reduce using rule 41 (H -> PLUS U H .)
+    RPARENT         reduce using rule 42 (H -> PLUS STRING H .)
 
 
 state 138
 
-    (25) STATEMENTS -> IF EL THEN X ELSE1 ENDIF .
+    (43) H -> PLUS U H .
 
-    SEMMICOLON      reduce using rule 25 (STATEMENTS -> IF EL THEN X ELSE1 ENDIF .)
+    RPARENT         reduce using rule 43 (H -> PLUS U H .)
 
 
 state 139
 
-    (43) ELSE1 -> ELSE X .
+    (29) STATEMENTS -> IF EL THEN X ELSE1 ENDIF .
 
-    ENDIF           reduce using rule 43 (ELSE1 -> ELSE X .)
+    SEMMICOLON      reduce using rule 29 (STATEMENTS -> IF EL THEN X ELSE1 ENDIF .)
 
 
 state 140
 
-    (28) STATEMENTS -> FOR O TO E X NEXT .
+    (45) ELSE1 -> ELSE X .
 
-    SEMMICOLON      reduce using rule 28 (STATEMENTS -> FOR O TO E X NEXT .)
+    ENDIF           reduce using rule 45 (ELSE1 -> ELSE X .)
 
 
 state 141
+
+    (32) STATEMENTS -> FOR ID TO E X NEXT .
+
+    SEMMICOLON      reduce using rule 32 (STATEMENTS -> FOR ID TO E X NEXT .)
+
+
+state 142
 
     (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET . Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
-
-    Z                              shift and go to state 144
-
-state 142
-
-    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET . Z RBRACKET LBRACKET Z RBRACKET
-    (15) Z -> . NUMBER
-    (16) Z -> . ID
-
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
     Z                              shift and go to state 145
 
 state 143
 
-    (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET
-    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
+    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET . Z RBRACKET LBRACKET Z RBRACKET
+    (15) Z -> . NUMBER
+    (16) Z -> . ID
 
-    RBRACKET        shift and go to state 146
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
+    Z                              shift and go to state 146
 
 state 144
 
     (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET
+    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
 
     RBRACKET        shift and go to state 147
 
 
 state 145
 
-    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
+    (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET
 
     RBRACKET        shift and go to state 148
 
 
 state 146
 
-    (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .
-    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET . LBRACKET Z RBRACKET
+    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z . RBRACKET LBRACKET Z RBRACKET
 
-    SEMMICOLON      reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    ASSIGN          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    RPARENT         reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    PLUS            reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    LET             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    PRINT           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    INPUT           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    CLS             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    IF              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    WHILE           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    DO              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    FOR             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    GOSUB           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    NEXT            reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    TO              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    MINUS           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    TIMES           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    DIVIDE          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    LBRACKET        shift and go to state 149
+    RBRACKET        shift and go to state 149
 
 
 state 147
 
     (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .
+    (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET . LBRACKET Z RBRACKET
 
     SEMMICOLON      reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     ASSIGN          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
@@ -2347,38 +2270,61 @@ state 147
     FOR             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     GOSUB           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     NEXT            reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    TO              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    MINUS           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    TIMES           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    DIVIDE          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    LBRACKET        shift and go to state 150
+
+
+state 148
+
+    (13) DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .
+
+    SEMMICOLON      reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    ASSIGN          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    RPARENT         reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    PLUS            reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    LET             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    PRINT           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    INPUT           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    CLS             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    IF              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    WHILE           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    DO              reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    FOR             reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    GOSUB           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
+    NEXT            reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     MINUS           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     TIMES           reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     DIVIDE          reduce using rule 13 (DCLMATRIX -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
 
 
-state 148
+state 149
 
     (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET . LBRACKET Z RBRACKET
 
-    LBRACKET        shift and go to state 149
+    LBRACKET        shift and go to state 150
 
 
-state 149
+state 150
 
     (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET . Z RBRACKET
     (15) Z -> . NUMBER
     (16) Z -> . ID
 
-    NUMBER          shift and go to state 98
-    ID              shift and go to state 99
+    NUMBER          shift and go to state 92
+    ID              shift and go to state 93
 
-    Z                              shift and go to state 150
+    Z                              shift and go to state 151
 
-state 150
+state 151
 
     (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z . RBRACKET
 
-    RBRACKET        shift and go to state 151
+    RBRACKET        shift and go to state 152
 
 
-state 151
+state 152
 
     (14) DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .
 
@@ -2396,7 +2342,6 @@ state 151
     FOR             reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     GOSUB           reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     NEXT            reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
-    TO              reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     MINUS           reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     TIMES           reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)
     DIVIDE          reduce using rule 14 (DCLCUBE -> LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET .)

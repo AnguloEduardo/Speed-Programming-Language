@@ -8,8 +8,10 @@ dim j, i as word;
 
 subprocedure matrices
 
-	let i = 0;
-	let j = 0;
+	let ax = 0;
+	let ay = 0;
+	let bx = 0;
+	let by = 0;
 
 	input ("Inserte el tamano x de la matriz A: ") >> ax;
 	input ("Inserte el tamano y de la matriz A: ") >> ay;
@@ -25,11 +27,17 @@ subprocedure matrices
 		input ("Inserte el tamano x de la matriz B: ") >> by;
 	whend;
 
+	let i = 0;
+	let j = 0;
+
 	for i to (ax-1)
 		for j to (ay-1)
 			input ("Inserte valor i j de la matriz A: ") >> a[i][j];
 		next;
 	next;
+
+	let i = 0;
+	let j = 0;
 
 	for i to (bx-1)
 		for j to (by-1)
@@ -40,12 +48,19 @@ endsub;
 
 subprocedure suma
 
+	let i = 0;
+	let j = 0;
+
 	for i to (ax-1)
 		for j to (ay-1)
 			let c[i][j] = a[i][j] + b[i][j];
 		next;
 	next;
 	print ("Los valores de la matriz resultante son: ");
+
+	let i = 0;
+	let j = 0;
+
 	for i to (ax-1)
 		for j to (ay-1)
 			print (c[i][j]);

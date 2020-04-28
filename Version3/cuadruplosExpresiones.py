@@ -1,6 +1,9 @@
 global operador
 global operando1
 global operando2
+global operando1ID
+global operando2ID
+global operandosID
 global resultado
 global operandos
 global temporales
@@ -9,42 +12,51 @@ global listTemporales
 operandos = []
 operador = []
 operando1 = []
+operando1ID = []
 operando2 = []
+operando2ID = []
+operandosID = []
 resultado = []
-temporales = ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12","T13",
-			  "T14","T15","T16","T17","T18","T19","T20","T21","T22","T23","T24"]
-listTemporales = ["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10","T11","T12","T13",
-			  	  "T14","T15","T16","T17","T18","T19","T20","T21","T22","T23","T24"]
+temporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
+			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137]
 
 def genCuadruplo(x):
 	global operando1
 	global operando2
+	global operando1ID
+	global operando2ID
 	global operandos
 	global operador
 	global temporales
 	global resultado
 	global listTemporales
 	operando2.append(operandos.pop())
+	operando2ID.append(operandosID.pop())
 	operando1.append(operandos.pop())
+	operando1ID.append(operandosID.pop())
 	operador.append(x)
 	if x == "=":
 		resultado.append(operando1[operando1.__len__() - 1])
+		operandosID.append(1)
 	else:
 		resultado.append(temporales.pop(0))
+		operandosID.append(1)
 	operandos.append(resultado[resultado.__len__() - 1])
-	if operando1[operando1.__len__() - 1] in listTemporales:
+	if operando1[operando1.__len__() - 1] > 99:
 		temporales.append(operando1[operando1.__len__() - 1])
 
-	if operando2[operando2.__len__() - 1] in listTemporales:
+	if operando2[operando2.__len__() - 1] > 99:
 		temporales.append(operando2[operando2.__len__() - 1])
 
-def pushOperandos(x):
+def pushOperandos(x,y):
 	global operandos
 	operandos.append(x)
+	operandosID.append(y)
 
 def imprimirCuadruplos():
-	cuadruplos ="\n".join("{4} {0:2s} {4} {1:3s} {4} {2:3s} {4} {3:3s} {4}".format(
-				x, y, z, w,'|') for x, y, z, w in zip(operador,operando1,operando2,resultado))
+	cuadruplos ="\n".join("{6} {0:2} {6} {1:3} {6} {2:3} {6} {3:3} {6} {4:3} {6} {5:3} {6} ".format
+		(x, y, a, z, b, w,'|') for x, y, a, z, b, w in zip(operador,operando1,operando1ID,
+		operando2,operando2ID,resultado))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
 	print ("\nLista de operandos:\n")
 	print (operandos)

@@ -4,7 +4,7 @@ import codecs
 import re
 from semantic_analyser import *
 from symbol_table import *
-from cuadruplos import *
+from cuadruplosExpresiones import *
 from lexical_analyser import tokens
 from sys import stdin
 from graphviz import Digraph
@@ -21,7 +21,7 @@ precendence = (
 
 def p_PROGRAM(p):
 	'''
-	program : PROGRAM ID VARIABLE SP X END
+	program : PROGRAM ID VARIABLE SP X END SEMMICOLON
 	'''
 	p[0] = PROGRAM(p[3],p[4],p[5],"program")
 
@@ -197,27 +197,28 @@ def p_U(p):
 	'''
 	U : ID
 	'''
-	pushOperandos(p[1])
+	pushOperandos(int(buscar(p[1])),1)
+
 
 def p_U1(p):
 	'''
 	U : ID DCLARRAY
 	'''
-	pushOperandos(p[1])
+	pushOperandos(int(buscar(p[1])),1)
 	p[0] = U1(p[2],"U1")
 
 def p_U2(p):
 	'''
 	U : ID DCLMATRIX
 	'''
-	pushOperandos(p[1])
+	pushOperandos(int(buscar(p[1])),1)
 	p[0] = U2(p[2],"U2")
 
 def p_U3(p):
 	'''
 	U : ID DCLCUBE
 	'''
-	pushOperandos(p[1])
+	pushOperandos(int(buscar(p[1])),1)
 	p[0] = U3(p[2],"U3")
 
 def p_Q(p):
@@ -302,7 +303,7 @@ def p_F(p):
 	'''
 	F : NUMBER
 	'''
-	pushOperandos(p[1])
+	pushOperandos(int(p[1]),0)
 
 def p_F1(p):
 	'''
@@ -320,7 +321,7 @@ def p_EL(p):
 	'''
 	EL : EL OR TL
 	'''
-	#genCuadruplo(p[2])
+	genCuadruplo(p[2])
 	p[0] = EL(p[1],p[3],"EL")
 
 def p_EL1(p):
@@ -334,7 +335,7 @@ def p_TL(p):
 	'''
 	TL : TL AND FL
 	'''
-	#genCuadruplo(p[2])
+	genCuadruplo(p[2])
 	p[0] = TL(p[1],p[3],"TL")
 
 def p_TL1(p):
@@ -347,7 +348,7 @@ def p_FL(p):
 	'''
 	FL : K OPREL K
 	'''
-
+	genCuadruplo(p[2])
 	p[0] = FL(p[1],p[3],"FL")
 
 def p_FL1(p):
@@ -365,19 +366,19 @@ def p_OPREL(p):
 	| NE
 	| EQUAL
 	'''
-	#genCuadruplo(p[1])
+	p[0] = p[1]
 
 def p_K(p):
 	'''
 	K : ID
 	'''
-	#pushOperandos(p[1])
+	pushOperandos(buscar(p[1]),1)
 
 def p_K1(p):
 	'''
 	K : NUMBER
 	'''
-	#pushOperandos(p[1])
+	pushOperandos(p[1],0)
 
 def p_error(p):
 	print("Incorrect grammar\n", p)
@@ -389,7 +390,7 @@ def traducir(result):
 	graphFile.close()
 	print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
 
-test = os.getcwd()+"\\test\\prueba2.txt"
+test = os.getcwd()+"\\test\\prueba4.txt"
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()

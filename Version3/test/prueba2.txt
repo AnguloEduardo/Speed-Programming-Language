@@ -49,7 +49,7 @@ endsub;
 subprocedure suma
 
 	let i = 0;
-	let j = 0;
+	let i = 0;
 
 	for i to (ax-1)
 		for j to (ay-1)
@@ -70,4 +70,4 @@ endsub;
 
 gosub matrices;
 gosub suma;
-end
+end;

@@ -3,6 +3,11 @@ program main
 dim a, b, c, d as word;
 
 if (a>b) then
+	let a = 2;
+else
+	if (a<b) && (c>=d) || (b<>d) then
+		let b = 3;
+	endif;
 endif;
 
-end
+end;

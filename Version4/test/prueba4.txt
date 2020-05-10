@@ -2,6 +2,10 @@ program main
 
 dim a, b, c, d as word;
 
+do
+	let c = c+2;
+loopuntil c<a endo;
+
 if 1 < 3 then
 	let a = 2;
 else
@@ -11,7 +15,17 @@ else
 		if (c <> c) then
 			cls;
 		else
-			cls;
+			while a<c do
+				let a = a+3;
+				cls;
+				while b<d do
+					let b = b+3;
+					cls;
+					do
+						let c = c+2;
+						loopuntil c<a endo;
+				whend;
+			whend;
 		cls;
 		endif;
 	endif;

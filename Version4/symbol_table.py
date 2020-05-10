@@ -38,4 +38,4 @@ def imprimirSymbolTable():
 		print ("\nError in the symbol table")
 
 def buscar(id):
-	return tableID.index(id)
+	return (tableID.index(id)+1)

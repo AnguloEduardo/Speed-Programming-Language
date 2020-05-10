@@ -18,7 +18,7 @@ subprocedure matrices
 	input ("Inserte el tamano x de la matriz B: ") >> bx;
 	input ("Inserte el tamano x de la matriz B: ") >> by;
 
-	while ax <> bx || ay <> by
+	while ax <> bx || ay <> by do
 
 		print ("ERROR Los tamanos de las matrices son diferentes");
 		input ("Inserte el tamano x de la matriz A: ") >> ax;
@@ -27,20 +27,14 @@ subprocedure matrices
 		input ("Inserte el tamano x de la matriz B: ") >> by;
 	whend;
 
-	let i = 0;
-	let j = 0;
-
-	for i to (ax-1)
-		for j to (ay-1)
+	for i=0 to (ax-1) do
+		for j=0 to (ay-1) do
 			input ("Inserte valor i j de la matriz A: ") >> a[i][j];
 		next;
 	next;
 
-	let i = 0;
-	let j = 0;
-
-	for i to (bx-1)
-		for j to (by-1)
+	for i=0 to (bx-1) do
+		for j=0 to (by-1) do
 			input ("Inserte valor i j de la matriz B: ") >> b[i][j];
 		next;
 	next;
@@ -48,21 +42,15 @@ endsub;
 
 subprocedure suma
 
-	let i = 0;
-	let i = 0;
-
-	for i to (ax-1)
-		for j to (ay-1)
+	for i=0 to (ax-1) do
+		for j=0 to (ay-1) do
 			let c[i][j] = a[i][j] + b[i][j];
 		next;
 	next;
 	print ("Los valores de la matriz resultante son: ");
 
-	let i = 0;
-	let j = 0;
-
-	for i to (ax-1)
-		for j to (ay-1)
+	for i=0 to (ax-1) do
+		for j=0 to (ay-1) do
 			print (c[i][j]);
 		next;
 	next;

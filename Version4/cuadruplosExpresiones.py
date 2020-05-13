@@ -19,7 +19,8 @@ operador = []
 operando1 = []
 operando2 = []
 resultado = []
-temporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
+temporales = []
+listTemporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
 			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137]
 
 def genCuadruplo(x):
@@ -27,7 +28,7 @@ def genCuadruplo(x):
 	global operando2
 	global operandos
 	global operador
-	global temporales
+	global listTemporales
 	global resultado
 	global cont
 	cont+=1
@@ -38,13 +39,13 @@ def genCuadruplo(x):
 	if x == "=":
 		resultado.append(operando1[operando1.__len__() - 1])
 	else:
-		resultado.append(temporales.pop(0))
+		resultado.append(listTemporales.pop(0))
 
 	if operando1[operando1.__len__() - 1] > 99:
-		temporales.append(operando1[operando1.__len__() - 1])
+		listTemporales.append(operando1[operando1.__len__() - 1])
 
 	if operando2[operando2.__len__() - 1] > 99:
-		temporales.append(operando2[operando2.__len__() - 1])
+		listTemporales.append(operando2[operando2.__len__() - 1])
 
 	operandos.append(resultado[resultado.__len__() - 1])
 
@@ -134,7 +135,7 @@ def genCuadruploFor(x):
 	global operando2
 	global operandos
 	global operador
-	global temporales
+	global listTemporales
 	global resultado
 	global cont
 	global ID
@@ -147,10 +148,10 @@ def genCuadruploFor(x):
 	operandos.append(operando1[operando1.__len__() - 1])
 
 	if operando1[operando1.__len__() - 1] > 99:
-		temporales.append(operando1[operando1.__len__() - 1])
+		listTemporales.append(operando1[operando1.__len__() - 1])
 
 	if operando2[operando2.__len__() - 1] > 99:
-		temporales.append(operando2[operando2.__len__() - 1])
+		listTemporales.append(operando2[operando2.__len__() - 1])
 
 	operandos.append(resultado[resultado.__len__() - 1])
 
@@ -160,13 +161,13 @@ def forAction3():
 	global operando1
 	global operando2
 	global resultado
-	global temporales
+	global listTemporales
 	global cont
 	global ID
 	global Tf
 	cont+=1
 	operador.append("=")
-	operando1.append(temporales.pop(0))#liberar
+	operando1.append(listTemporales.pop(0))#liberar
 	operando2.append(operandos.pop())
 	resultado.append(operando1[operando1.__len__() - 1])
 	operandos.append(resultado[resultado.__len__() - 1])
@@ -175,14 +176,14 @@ def forAction3():
 	operador.append("<=")
 	operando1.append(ID)
 	operando2.append(Tf)
-	resultado.append(temporales.pop(0))
+	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[resultado.__len__() - 1])
 	cont+=1
 	operador.append("gotofalso")
 	operando1.append(operandos.pop())
 	operando2.append("--")
 	resultado.append("--")
-	temporales.append(operando1[operando1.__len__() - 1])
+	listTemporales.append(operando1[operando1.__len__() - 1])
 	saltos.append(cont-2)
 
 def finFor():
@@ -191,7 +192,7 @@ def finFor():
 	global operando1
 	global operando2
 	global resultado
-	global temporales
+	global listTemporales
 	global cont
 	global ID
 	global tf
@@ -200,7 +201,7 @@ def finFor():
 	operador.append("+")
 	operando1.append(ID)
 	operando2.append(-1)
-	resultado.append(temporales.pop(0))
+	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[resultado.__len__() - 1])
 	cont+=1
 	operador.append("=")
@@ -208,6 +209,7 @@ def finFor():
 	operando2.append(operandos.pop())
 	resultado.append(ID)
 	operandos.append(resultado[resultado.__len__() - 1])
+	listTemporales.append(operando2[operando2.__len__() - 1])
 	cont+=1
 	retorno = saltos.pop()
 	operador.append("goto")
@@ -215,19 +217,16 @@ def finFor():
 	operando2.append(retorno)
 	resultado.append("--")
 	operando2[retorno+1] = cont
-	temporales.append(Tf)
+	listTemporales.append(Tf)
 
 
 def imprimirCuadruplos():
 	cuadruplos = "\n".join("{4} {0:10} {4} {1:3} {4} {2:3} {4} {3:3} {4}".format
 		(x, y, z, w,'|') for x, y, z, w in zip(operador,operando1,operando2,resultado))
-	cuadruplosif = "\n".join("{3} {0:10} {3} {1:3} {3} {2:3} {3}".format
-		(x, y, z,'|') for x, y, z in zip(operador,operando1,operando2))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
-	#print ("\nCuadruplos if:\n\n"+cuadruplosif+"\n")
 	print ("\nLista de operandos:\n")
 	print (operandos)
 	print ("\n")
-	print ("\nLista de Temporales disponibles:\n")
-	print (temporales)
+	print ("\nLista de listTemporales disponibles:\n")
+	print (listTemporales)
 	print ("\n")

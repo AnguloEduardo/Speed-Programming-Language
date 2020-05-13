@@ -23,7 +23,7 @@ else
 					cls;
 					do
 						let c = c+2;
-						loopuntil c<a endo;
+					loopuntil c<a endo;
 				whend;
 			whend;
 		cls;

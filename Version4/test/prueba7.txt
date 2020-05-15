@@ -1,8 +1,9 @@
 program main
 
-dim a, b, c, d, i as word;
+	dim a, b, i, c, d  as word;
 
-for i=0 to 3 do
-	cls;
-next;
+	for i=0 to 3 do
+		input ("Inserte valor i j de la matriz A: ") >> a[i][j];
+		print (d);
+	next;
 end;

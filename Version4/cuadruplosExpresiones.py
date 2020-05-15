@@ -1,19 +1,26 @@
+from symbol_table import *
 global operador
 global operando1
 global operando2
 global resultado
 global operandos
+global indexCuadruplo
 global temporales
 global listTemporales
 global cont
 global saltos
 global ID
 global Tf
+global texto
+global indexTexto
 
 Tf = 0
 ID = 0
 cont = 0
+texto = []
 saltos = []
+indexTexto = []
+indexCuadruplo = []
 operandos = []
 operador = []
 operando1 = []
@@ -31,6 +38,7 @@ def genCuadruplo(x):
 	global listTemporales
 	global resultado
 	global cont
+	indexCuadruplo.append(cont)
 	cont+=1
 	operando2.append(operandos.pop())
 	operando1.append(operandos.pop())
@@ -40,14 +48,13 @@ def genCuadruplo(x):
 		resultado.append(operando1[operando1.__len__() - 1])
 	else:
 		resultado.append(listTemporales.pop(0))
+		operandos.append(resultado[resultado.__len__() - 1])
 
 	if operando1[operando1.__len__() - 1] > 99:
 		listTemporales.append(operando1[operando1.__len__() - 1])
 
 	if operando2[operando2.__len__() - 1] > 99:
 		listTemporales.append(operando2[operando2.__len__() - 1])
-
-	operandos.append(resultado[resultado.__len__() - 1])
 
 def pushOperandos(x):
 	global operandos
@@ -60,6 +67,7 @@ def gotofalso():
 	global operando2
 	global operador
 	global resultado
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("gotofalso")
 	operando1.append(operandos.pop())
@@ -74,6 +82,7 @@ def goto():
 	global operando2
 	global operador
 	global resultado
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("goto")
 	operando1.append("--")
@@ -93,6 +102,7 @@ def genCuadruploCLS():
 	global operando2
 	global operador
 	global resultado
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("CLS")
 	operando1.append("--")
@@ -110,6 +120,7 @@ def finWhile():
 	global operando2
 	global operador
 	global resultado
+	indexCuadruplo.append(cont)
 	cont+=1
 	operando2[saltos.pop()] = cont
 	operador.append("goto")
@@ -124,6 +135,7 @@ def finDoWhile():
 	global operando2
 	global operador
 	global resultado
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("gotofalso")
 	operando1.append(operandos.pop())
@@ -139,6 +151,7 @@ def genCuadruploFor(x):
 	global resultado
 	global cont
 	global ID
+	indexCuadruplo.append(cont)
 	cont+=1
 	operando2.append(operandos.pop())
 	ID = operandos.pop()
@@ -153,8 +166,6 @@ def genCuadruploFor(x):
 	if operando2[operando2.__len__() - 1] > 99:
 		listTemporales.append(operando2[operando2.__len__() - 1])
 
-	operandos.append(resultado[resultado.__len__() - 1])
-
 def forAction3():
 	global operandos
 	global operador
@@ -165,12 +176,14 @@ def forAction3():
 	global cont
 	global ID
 	global Tf
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("=")
 	operando1.append(listTemporales.pop(0))#liberar
 	operando2.append(operandos.pop())
 	resultado.append(operando1[operando1.__len__() - 1])
 	operandos.append(resultado[resultado.__len__() - 1])
+	indexCuadruplo.append(cont)
 	cont+=1
 	Tf = operandos.pop()
 	operador.append("<=")
@@ -178,6 +191,7 @@ def forAction3():
 	operando2.append(Tf)
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[resultado.__len__() - 1])
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("gotofalso")
 	operando1.append(operandos.pop())
@@ -196,6 +210,7 @@ def finFor():
 	global cont
 	global ID
 	global tf
+	indexCuadruplo.append(cont)
 	cont+=1
 	ID = operandos.pop()
 	operador.append("+")
@@ -203,13 +218,15 @@ def finFor():
 	operando2.append(-1)
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[resultado.__len__() - 1])
+	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("=")
 	operando1.append(ID)
 	operando2.append(operandos.pop())
 	resultado.append(ID)
-	operandos.append(resultado[resultado.__len__() - 1])
+	#operandos.append(resultado[resultado.__len__() - 1])
 	listTemporales.append(operando2[operando2.__len__() - 1])
+	indexCuadruplo.append(cont)
 	cont+=1
 	retorno = saltos.pop()
 	operador.append("goto")
@@ -219,10 +236,83 @@ def finFor():
 	operando2[retorno+1] = cont
 	listTemporales.append(Tf)
 
+def genCuadruploGOSUB(ID):
+	global operador
+	global operando1
+	global operando2
+	global resultado
+	global cont
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("goto")
+	operando1.append("--")
+	operando2.append(tableValue[ID-1])
+	resultado.append("--")
+
+def SP_insert(ID):
+	global cont
+	SP_insertID(ID, cont)
+
+def genCuadruploINPUT(var):
+	global operador
+	global operando1
+	global operando2
+	global resultado
+	global cont
+	global texto
+	indexCuadruplo.append(cont)
+	cont+=1
+	texto.append(var)
+	operador.append("INPUT")
+	operando1.append(texto.__len__())
+	operando2.append(operandos.pop())
+	resultado.append("---")
+
+def genCuadruploPRINT(var):
+	global operador
+	global operando1
+	global operando2
+	global resultado
+	global cont
+	global texto
+	global indexCuadruplo
+	indexCuadruplo.append(cont)
+	cont+=1
+	texto.append(var)
+	if var == " ":
+		operando1.append("---")
+		operando2.append(operandos.pop())
+	else:
+		operando1.append(texto.__len__())
+		operando2.append("---")
+
+	operador.append("PRINT")
+	resultado.append("---")
+
+def genFirstGoto():
+	global operador
+	global operando1
+	global operando2
+	global resultado
+	global cont
+	global indexCuadruplo
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("goto")
+	operando1.append("--")
+	operando2.append("--")
+	resultado.append("--")
+
+def rellenarFirstGoto():
+	global cont
+	global operando2
+	operando2[0] = cont
+
 
 def imprimirCuadruplos():
-	cuadruplos = "\n".join("{4} {0:10} {4} {1:3} {4} {2:3} {4} {3:3} {4}".format
-		(x, y, z, w,'|') for x, y, z, w in zip(operador,operando1,operando2,resultado))
+	cuadruplos = "\n".join("{5} {0:3} {5} {1:10} {5} {2:5} {5} {3:5} {5} {4:5} {5}"
+					.format(v, w, x, y, z, '|') for v, w, x, y, z, in zip(indexCuadruplo,
+					operador,operando1,operando2,resultado))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
 	print ("\nLista de operandos:\n")
 	print (operandos)

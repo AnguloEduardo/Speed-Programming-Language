@@ -4,8 +4,8 @@ import codecs
 import os
 import sys
 
-tokens = [ 'ID', 'NUMBER', 'COMMA', 'SEMMICOLON', 'LPARENT', 'RPARENT',
-		   'ASSIGN', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'NE', 'LT', 'LTE',
+tokens = [ 'ID', 'NUMBER', 'FLOATNUMBER', 'COMMA', 'SEMMICOLON', 'LPARENT', 'RPARENT',
+		   'ASSIGN', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'NE', 'LT', 'LTE', 'POINT',
 		   'GT', 'GTE', 'RBRACKET','LBRACKET', 'EQUAL','STRING', 'OR', 'AND',
 		   'NOT', 'GTGT']
 
@@ -54,6 +54,7 @@ t_GTE = '>='
 t_LPARENT = '\('
 t_RPARENT = '\)'
 t_COMMA = ','
+t_POINT = '\.'
 t_SEMMICOLON = ';'
 t_LBRACKET = '\['
 t_RBRACKET = '\]'
@@ -69,7 +70,7 @@ def t_ID(t):
 	return t
 
 def t_STRING(t):
-	r'["][\\a-zA-Z 0-9:!@#$%^&*()\-+=/?<>,~`|ñ]+["]'
+	r'["][\\a-zA-Z 0-9:!@#$%^&*()\-+=/?¿<>,~`|ñ/\.]+["]'
 	return t
 
 def t_newline(t):
@@ -80,8 +81,14 @@ def t_COMMENT(t):
 	r'\#.*'
 	pass
 
+def t_FLOATNUMBER(t):
+	r'\d+\.\d+'
+	t.value = float(t.value)
+	return t
+
 def t_NUMBER(t):
 	r'\d+'
+	t.value = int(t.value)
 	return t
 
 def t_error(t):

@@ -1,10 +1,10 @@
 program main
 
-dim a, b, c, d as word;
+	dim a, b, c, d as word;
 
-if a<c then
-	let a = 2;
-else
-	let b = 3;
-endif;
+	if a<c then
+		let a = 2;
+	else
+		let b = 3;
+	endif;
 end;

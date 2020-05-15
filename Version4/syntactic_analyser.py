@@ -2,7 +2,6 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
-from symbol_table import *
 from cuadruplosExpresiones import *
 from lexical_analyser import tokens
 from sys import stdin
@@ -17,10 +16,24 @@ precendence = (
 	('left','LPARENT','RPARENT')
 )
 
+#Gramatica principal
+
 def p_PROGRAM(p):
 	'''
-	program : PROGRAM ID VARIABLE SP X END SEMMICOLON
+	program : PROGRAM1 ID VARIABLE SP SALTO STATUTES END SEMMICOLON
 	'''
+
+def p_PROGRAM_PROGRAM1(p):
+	'''
+	PROGRAM1 : PROGRAM
+	'''
+	genFirstGoto()
+
+def p_PROGRAM_SALTO(p):
+	'''
+	SALTO :
+	'''
+	rellenarFirstGoto()
 
 def p_VARIABLE(p):
 	'''
@@ -28,84 +41,46 @@ def p_VARIABLE(p):
 	|
 	'''
 
-def p_IDLIST(p):
-	'''
-	IDLIST : ID
-	'''
-	insertID(p[1])
-
-def p_IDLIST2(p):
-	'''
-	IDLIST : IDLIST COMMA ID
-	'''
-	insertID(p[3])
-
-def p_TIPO_WORD(p):
-	'''
-	TIPO : WORD
-	| FLOAT
-	| ARRAY DCLARRAY
-	| MATRIX DCLMATRIX
-	| CUBE DCLCUBE
-	'''
-	insertType(p[1])
-
-def p_DCLARRAY(p):
-	'''
-	DCLARRAY : LBRACKET Z RBRACKET
-	'''
-
-def p_DCLMATRIX(p):
-	'''
-	DCLMATRIX : LBRACKET Z RBRACKET LBRACKET Z RBRACKET
-	'''
-
-def p_DCLCUBE(p):
-	'''
-	DCLCUBE : LBRACKET Z RBRACKET LBRACKET Z RBRACKET LBRACKET Z RBRACKET
-	'''
-
-def p_Z(p):
-	'''
-	Z : NUMBER
-	| ID
-	'''
-
 def p_SP(p):
 	'''
-	SP : SUBPROCEDURE ID X ENDSUB SEMMICOLON SP
-	|
+	SP : SUBPROCEDURE ID2 STATUTES ENDSUB SEMMICOLON SP
 	'''
 
-def p_X(p):
+def p_SP_ID2(p):
 	'''
-	X : STATEMENTS SEMMICOLON X
+	ID2 : ID
+	'''
+	SP_insert(p[1])
+
+def p_SP_EMPTY(p):
+	'''
+	SP :
+	'''
+
+def p_STATUTES(p):
+	'''
+	STATUTES : STATEMENTS SEMMICOLON STATUTES
 	|
 	'''
 
 def p_STATEMENTS_LET(p):
 	'''
-	STATEMENTS : LET U ASSIGN E
+	STATEMENTS : LET VAR ASSIGN E
 	'''
 	genCuadruplo(p[3])
 
 def p_STATEMENTS_PRINT(p):
 	'''
-	STATEMENTS : PRINT Q
+	STATEMENTS : PRINT VALUE
 	'''
+	genCuadruploPRINT(p[2])
 
 def p_STATEMENTS_INPUT(p):
 	'''
 	STATEMENTS : INPUT TEXT GTGT VAR
 	'''
+	genCuadruploINPUT(p[2])
 
-def p_STATEMENTS_INPUT_VAR(p):
-	'''
-	VAR : ID
-	| ID DCLARRAY
-	| ID DCLMATRIX
-	| ID DCLCUBE
-	'''
 def p_STATEMENTS_CLS(p):
 	'''
 	STATEMENTS : CLS
@@ -114,145 +89,33 @@ def p_STATEMENTS_CLS(p):
 
 def p_STATEMENTS_IF(p):
 	'''
-	STATEMENTS : IF EL THEN1 X ELSE1 X ENDIF
+	STATEMENTS : IF EL THEN1 STATUTES ELSE1 ENDIF
 	'''
 	finIF()
 
-def p_STATEMENTS_IF_ELSE1(p):
-	'''
-	ELSE1 : ELSE
-	'''
-	goto()
-
-def p_STATEMENTS_IF_ELSE1_EMPTY(p):
-	'''
-	ELSE1 :
-	'''
-
-def p_STATEMENTS_IF_THEN1(p):
-	'''
-	THEN1 : THEN
-	'''
-	gotofalso()
-
 def p_STATEMENTS_WHILE(p):
 	'''
-	STATEMENTS : WHILE1 EL DO1 X WHEND
+	STATEMENTS : WHILE1 EL DO1 STATUTES WHEND
 	'''
 	finWhile()
 
-def p_STATEMENTS_WHILE_WHILE1(p):
-	'''
-	WHILE1 : WHILE
-	'''
-	origen()
-
-def p_STATEMENTS_WHILE_DO1(p):
-	'''
-	DO1 : DO
-	'''
-	gotofalso()
-
 def p_STATEMENTS_DO(p):
 	'''
-	STATEMENTS : DO2 X LOOPUNTIL EL ENDO
+	STATEMENTS : DO2 STATUTES LOOPUNTIL EL ENDO
 	'''
 	finDoWhile()
 
-def p_STATEMENTS_DO_DO2(p):
-	'''
-	DO2 : DO
-	'''
-	origen()
-
 def p_STATEMENTS_FOR(p):
 	'''
-	STATEMENTS : FOR ID1 ASSIGN E TO1 E DO3 X NEXT
+	STATEMENTS : FOR ID1 ASSIGN E TO1 E DO3 STATUTES NEXT
 	'''
 	finFor()
 
-def p_STATEMENTS_FOR_ID(p):
-	'''
-	ID1 : ID
-	'''
-	pushOperandos(int(buscar(p[1])))
-
-def p_STATEMENTS_FOR_TO(p):
-	'''
-	TO1 : TO
-	'''
-	genCuadruploFor("=")
-
-def p_STATEMENTS_FOR_DO(p):
-	'''
-	DO3 : DO
-	'''
-	forAction3()
-
 def p_STATEMENTS_GOSUB(p):
 	'''
-	STATEMENTS : GOSUB ID
+	STATEMENTS : GOSUB POINT ID
 	'''
-
-def p_U(p):
-	'''
-	U : ID
-	'''
-	pushOperandos(int(buscar(p[1])))
-
-
-def p_U1(p):
-	'''
-	U : ID DCLARRAY
-	'''
-	pushOperandos(int(buscar(p[1])))
-
-def p_U2(p):
-	'''
-	U : ID DCLMATRIX
-	'''
-	pushOperandos(int(buscar(p[1])))
-
-def p_U3(p):
-	'''
-	U : ID DCLCUBE
-	'''
-	pushOperandos(int(buscar(p[1])))
-
-def p_Q(p):
-	'''
-	Q : LPARENT VAR RPARENT
-	'''
-
-def p_Q1(p):
-	'''
-	Q : TEXT
-	'''
-
-def p_TEXT(p):
-	'''
-    TEXT : LPARENT STRING H RPARENT
-    '''
-
-def p_TEXT_EMPTY(p):
-	'''
-	TEXT :
-	'''
-
-def p_H(p):
-	'''
-	H : PLUS STRING H
-	'''
-
-def p_H1(p):
-	'''
-	H : PLUS U H
-	'''
-
-def p_H_EMPTY(p):
-	'''
-	H :
-	'''
+	genCuadruploGOSUB(buscar(p[3]))
 
 def p_E(p):
 	'''
@@ -271,6 +134,7 @@ def p_T(p):
 	T : T TIMES F
 	| T DIVIDE F
 	'''
+	genCuadruplo(p[2])
 
 def p_T1(p):
 	'''
@@ -285,10 +149,16 @@ def p_F(p):
 
 def p_F1(p):
 	'''
-	F : U
+	F : FLOATNUMBER
 	'''
+	pushOperandos(float(p[1])*(-1))
 
 def p_F2(p):
+	'''
+	F : VAR
+	'''
+
+def p_F3(p):
 	'''
 	F : LPARENT E RPARENT
 	'''
@@ -318,7 +188,7 @@ def p_TL1(p):
 
 def p_FL(p):
 	'''
-	FL : K OPREL K
+	FL : OPERATOR OPREL OPERATOR
 	'''
 	genCuadruplo(p[2])
 
@@ -338,27 +208,150 @@ def p_OPREL(p):
 	'''
 	p[0] = p[1]
 
-def p_K(p):
+def p_OPERATOR(p):
 	'''
-	K : ID
+	OPERATOR : ID
 	'''
-	pushOperandos(int(buscar(p[1])))
+	pushOperandos(buscar(p[1]))
 
-def p_K1(p):
+def p_OPERATOR1(p):
 	'''
-	K : NUMBER
+	OPERATOR : NUMBER
 	'''
 	pushOperandos(int(p[1])*(-1))
+
+def p_OPERATOR2(p):
+	'''
+	OPERATOR : FLOATNUMBER
+	'''
+	pushOperandos(float(p[1])*(-1))
+
+def p_IDLIST(p):
+	'''
+	IDLIST : ID
+	'''
+	insertID(p[1])
+
+def p_IDLIST2(p):
+	'''
+	IDLIST : IDLIST COMMA ID
+	'''
+	insertID(p[3])
+
+def p_TIPO_WORD(p):
+	'''
+	TIPO : WORD
+	| FLOAT
+	| ARRAY DCLARRAY
+	| MATRIX DCLMATRIX
+	| CUBE DCLCUBE
+	'''
+	insertType(p[1])
+
+def p_DCLARRAY(p):
+	'''
+	DCLARRAY : LBRACKET IDENTIFICATOR RBRACKET
+	'''
+
+def p_DCLMATRIX(p):
+	'''
+	DCLMATRIX : LBRACKET IDENTIFICATOR RBRACKET LBRACKET IDENTIFICATOR RBRACKET
+	'''
+
+def p_DCLCUBE(p):
+	'''
+	DCLCUBE : LBRACKET IDENTIFICATOR RBRACKET LBRACKET IDENTIFICATOR RBRACKET LBRACKET IDENTIFICATOR RBRACKET
+	'''
+
+def p_IDENTIFICATOR(p):
+	'''
+	IDENTIFICATOR : NUMBER
+	| ID
+	'''
+
+def p_STATEMENTS_INPUT_VAR(p):
+	'''
+	VAR : ID
+	| ID DCLARRAY
+	| ID DCLMATRIX
+	| ID DCLCUBE
+	'''
+	pushOperandos(buscar(p[1]))
+
+def p_STATEMENTS_IF_ELSE1(p):
+	'''
+	ELSE1 : ELSE STATUTES
+	'''
+	goto()
+
+def p_STATEMENTS_IF_ELSE1_EMPTY(p):
+	'''
+	ELSE1 :
+	'''
+
+def p_STATEMENTS_IF_THEN1(p):
+	'''
+	THEN1 : THEN
+	'''
+	gotofalso()
+
+def p_STATEMENTS_WHILE_WHILE1(p):
+	'''
+	WHILE1 : WHILE
+	'''
+	origen()
+
+def p_STATEMENTS_WHILE_DO1(p):
+	'''
+	DO1 : DO
+	'''
+	gotofalso()
+
+def p_STATEMENTS_DO_DO2(p):
+	'''
+	DO2 : DO
+	'''
+	origen()
+
+def p_STATEMENTS_FOR_ID(p):
+	'''
+	ID1 : ID
+	'''
+	pushOperandos(buscar(p[1]))
+
+def p_STATEMENTS_FOR_TO(p):
+	'''
+	TO1 : TO
+	'''
+	genCuadruploFor("=")
+
+def p_STATEMENTS_FOR_DO(p):
+	'''
+	DO3 : DO
+	'''
+	forAction3()
+
+def p_VALUE(p):
+	'''
+	VALUE : LPARENT VAR RPARENT
+	'''
+	p[0] = " "
+
+def p_VALUE1(p):
+	'''
+	VALUE : TEXT
+	'''
+	p[0] = p[1]
+
+def p_TEXT(p):
+	'''
+	TEXT : LPARENT STRING RPARENT
+	'''
+	p[0] = p[2]
 
 def p_error(p):
 	print("Incorrect grammar\n", p)
 	print("Error in the line "+str(p.lineno))
-
-def traducir(result):
-	graphFile = open('graphviztree.vz','w')
-	graphFile.write(result.traducir())
-	graphFile.close()
-	print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
 
 test = os.getcwd()+"\\test\\prueba2.txt"
 fp = codecs.open(test,"r","utf-8")
@@ -368,4 +361,3 @@ parser = yacc.yacc('SLR')
 result = parser.parse(cadena)
 imprimirSymbolTable()
 imprimirCuadruplos()
-print (result)

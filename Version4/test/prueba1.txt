@@ -1,22 +1,23 @@
 program main
 
-dim n, m, t, y as word;
-dim a as float;
-dim b, g, r, c, d as array[2];
+	dim n, m, t, y as word;
+	dim a as float;
+	dim b, g, r, c, d as array[2];
 
 
-subprocedure area
-	let n = 4;
-	let n = (4);
-	let n = (5 + 2*(3 + 5*5 + 7*(8 + 5+ 3*5 + 1)* 9)*2 + (4+3));
+	subprocedure area
+		let n = 4;
+		let n = (4);
+		let n = (5 + 2*(3 + 5*5 + 7*(8 + 5+ 3*5 + 1)* 9)*2 + (4+3));
 
-endsub;
+	endsub;
 
-let r = 3;
-cls;
-
-if ((a>b) && (c<=d)) then
+	let r = 3;
 	cls;
-endif;
 
+	if ((a>b) && (c<=d)) then
+		cls;
+	endif;
+
+	gosub .area;
 end;

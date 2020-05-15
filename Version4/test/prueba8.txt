@@ -1,9 +1,9 @@
 program main
 
-dim a, b, c, d, i as word;
+	dim a, b, c, d, i as word;
 
-do
-	let a = a+3;
-	let b = b-2;
-loopuntil c<a endo;
+	do
+		let a = a+3;
+		let b = b-2;
+	loopuntil c<a endo;
 end;

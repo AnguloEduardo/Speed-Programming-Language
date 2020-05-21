@@ -12,21 +12,19 @@ global saltos
 global ID
 global Tf
 global texto
-global indexTexto
 
 Tf = 0
 ID = 0
 cont = 0
 texto = []
 saltos = []
-indexTexto = []
 indexCuadruplo = []
 operandos = []
 operador = []
 operando1 = []
 operando2 = []
 resultado = []
-temporales = []
+temporales = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 listTemporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
 			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137]
 
@@ -217,16 +215,8 @@ def finFor():
 	operador.append("+")
 	operando1.append(ID)
 	operando2.append(-1)
-	resultado.append(listTemporales.pop(0))
+	resultado.append(ID)
 	operandos.append(resultado[resultado.__len__() - 1])
-	indexCuadruplo.append(cont)
-	cont+=1
-	operador.append("=")
-	operando1.append(ID)
-	operando2.append(operandos.pop())
-	resultado.append("--")
-	#operandos.append(resultado[resultado.__len__() - 1])
-	listTemporales.append(operando2[operando2.__len__() - 1])
 	indexCuadruplo.append(cont)
 	cont+=1
 	retorno = saltos.pop()
@@ -263,9 +253,9 @@ def genCuadruploINPUT(var):
 	global texto
 	indexCuadruplo.append(cont)
 	cont+=1
-	texto.append(var)
+	texto.append(var[1:(len(var)-1)])
 	operador.append("INPUT")
-	operando1.append(texto.__len__())
+	operando1.append(texto.__len__()-1)
 	operando2.append(operandos.pop())
 	resultado.append("--")
 
@@ -279,12 +269,12 @@ def genCuadruploPRINT(var):
 	global indexCuadruplo
 	indexCuadruplo.append(cont)
 	cont+=1
-	texto.append(var)
+	texto.append(var[1:(len(var)-1)])
 	if var == " ":
 		operando1.append("--")
 		operando2.append(operandos.pop())
 	else:
-		operando1.append(texto.__len__())
+		operando1.append(texto.__len__()-1)
 		operando2.append("--")
 
 	operador.append("PRINT")
@@ -317,7 +307,6 @@ def finDePrograma():
 	global cont
 	global indexCuadruplo
 	indexCuadruplo.append(cont)
-	cont+=1
 	operador.append("finprograma")
 	operando1.append("--")
 	operando2.append("--")
@@ -337,15 +326,9 @@ def spReturn():
 	operando2.append("--")
 	resultado.append("--")
 
-
 def imprimirCuadruplos():
 	cuadruplos = "\n".join("{5} {0:3} {5} {1:12} {5} {2:5} {5} {3:5} {5} {4:5} {5}"
 					.format(v, w, x, y, z, '|') for v, w, x, y, z, in zip(indexCuadruplo,
 					operador,operando1,operando2,resultado))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
-	print ("\nLista de operandos:\n")
-	print (operandos)
-	print ("\n")
-	print ("\nLista de listTemporales disponibles:\n")
-	print (listTemporales)
 	print ("\n")

@@ -2,7 +2,7 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
-from cuadruplosExpresiones import *
+from interpreter import *
 from lexical_analyser import tokens
 from sys import stdin
 
@@ -96,7 +96,7 @@ def p_STATEMENTS_CLS(p):
 
 def p_STATEMENTS_IF(p):
 	'''
-	STATEMENTS : IF EL THEN1 STATUTES ELSE1 ENDIF
+	STATEMENTS : IF EL THEN1 STATUTES ELSE1 STATUTES ENDIF
 	'''
 	finIF()
 
@@ -287,7 +287,7 @@ def p_STATEMENTS_INPUT_VAR(p):
 
 def p_STATEMENTS_IF_ELSE1(p):
 	'''
-	ELSE1 : ELSE STATUTES
+	ELSE1 : ELSE
 	'''
 	goto()
 
@@ -356,15 +356,21 @@ def p_TEXT(p):
 	'''
 	p[0] = p[2]
 
+def p_TEXT1(p):
+	'''
+	TEXT :
+	'''
+
 def p_error(p):
 	print("Incorrect grammar\n", p)
 	print("Error in the line "+str(p.lineno))
 
-test = os.getcwd()+"\\test\\prueba2.txt"
+test = os.getcwd()+"\\test\\prueba11.txt"
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
 parser = yacc.yacc('SLR')
 result = parser.parse(cadena)
-imprimirSymbolTable()
-imprimirCuadruplos()
+#imprimirCuadruplos()
+#imprimirSymbolTable()
+ejecution()

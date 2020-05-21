@@ -13,18 +13,18 @@ program prueba
 		let bx = 0;
 		let by = 0;
 
-		input ("Inserte el tamano x de la matriz A: ") >> ax;
-		input ("Inserte el tamano y de la matriz A: ") >> ay;
-		input ("Inserte el tamano x de la matriz B: ") >> bx;
-		input ("Inserte el tamano x de la matriz B: ") >> by;
+		input ("Inserte el tamaño x de la matriz A: ") >> ax;
+		input ("Inserte el tamaño y de la matriz A: ") >> ay;
+		input ("Inserte el tamaño x de la matriz B: ") >> bx;
+		input ("Inserte el tamaño x de la matriz B: ") >> by;
 
 		while ax <> bx || ay <> by do
 
-			print ("ERROR Los tamanos de las matrices son diferentes");
-			input ("Inserte el tamano x de la matriz A: ") >> ax;
-			input ("Inserte el tamano y de la matriz A: ") >> ay;
-			input ("Inserte el tamano x de la matriz B: ") >> bx;
-			input ("Inserte el tamano x de la matriz B: ") >> by;
+			print ("ERROR Los tamaños de las matrices son diferentes");
+			input ("Inserte el tamaño x de la matriz A: ") >> ax;
+			input ("Inserte el tamaño y de la matriz A: ") >> ay;
+			input ("Inserte el tamaño x de la matriz B: ") >> bx;
+			input ("Inserte el tamaño x de la matriz B: ") >> by;
 		whend;
 
 		for i=0 to (ax-1) do

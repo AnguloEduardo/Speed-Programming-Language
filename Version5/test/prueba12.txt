@@ -1,0 +1,12 @@
+program prueba
+
+	dim a,b,c as array[10];
+	dim d,e,f as matrix[3][2];
+	dim g,h,i as cube[5][6][7];
+
+	let a[1] = 5;
+	let d[2][0] = 3;
+	let g[2][3][5] = 9;
+
+	print(i[4][5][6]);
+end;

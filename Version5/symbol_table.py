@@ -4,7 +4,9 @@ global tableValue
 global repetido
 global indice
 global contador
+global dimValue
 
+dimValue = []
 tableID = []
 tableType = []
 tableValue = []
@@ -16,11 +18,15 @@ def insertType(p):
 	global tableID
 	global tableType
 	global repetido
+	global dimValue
+	global operandos
 	if not repetido:
+		cont = 0
 		while len(tableID) > len(tableType):
+			cont+=1
 			tableType.append(p)
 			tableValue.append("--")
-
+		return cont
 def insertID(p):
 	global contador
 	global repetido
@@ -51,14 +57,19 @@ def SP_insertID(p, cont):
 		tableValue.append(cont)
 		indice.append(contador)
 
+
 def imprimirSymbolTable():
 	global repetido
 	global tableType
 	global tableID
 	if not repetido:
-		symboltable ="\n".join("{4} {0:3} {4} {1:8s} {4} {2:6s} {4} {3:6} {4}".format(w, x, y, z, '|')
-			for w, x, y, z in zip(indice, tableID, tableType, tableValue))
-		print ("\nTabla de simbolos:\n\n" + symboltable)
+		symboltable ="\n".join("{3} {0:3} {3} {1:8s} {3} {2:6s} {3}".format(w, x, y, '|')
+			for w, x, y in zip(indice, tableID, tableType))
+		print ("\nTabla de simbolos:\n\n")
+		print (symboltable)
+		print ("\n\n")
+		print ("Table value")
+		print (tableValue)
 	else:
 		tableID = []
 		tableType = []

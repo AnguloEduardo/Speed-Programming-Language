@@ -245,15 +245,30 @@ def p_IDLIST2(p):
 	'''
 	insertID(p[3])
 
-def p_TIPO_WORD(p):
+def p_TIPO_SIMPLES(p):
 	'''
 	TIPO : WORD
 	| FLOAT
-	| ARRAY DCLARRAY
-	| MATRIX DCLMATRIX
-	| CUBE DCLCUBE
 	'''
 	insertType(p[1])
+
+def p_TIPO_DIM_ARRAY(p):
+	'''
+	TIPO : ARRAY DCLARRAY
+	'''
+	dimCarac(p[1],insertType(p[1]))
+
+def p_TIPO_DIM_MATRIX(p):
+	'''
+	TIPO : MATRIX DCLMATRIX
+	'''
+	dimCarac(p[1],insertType(p[1]))
+
+def p_TIPO_DIM_CUBE(p):
+	'''
+	TIPO : CUBE DCLCUBE
+	'''
+	dimCarac(p[1],insertType(p[1]))
 
 def p_DCLARRAY(p):
 	'''
@@ -273,17 +288,63 @@ def p_DCLCUBE(p):
 def p_IDENTIFICATOR(p):
 	'''
 	IDENTIFICATOR : NUMBER
-	| ID
 	'''
+	pushOperandos(int(p[1])*(-1))
 
-def p_STATEMENTS_INPUT_VAR(p):
+def p_IDENTIFICATOR_1(p):
+	'''
+	IDENTIFICATOR : ID
+	'''
+	pushOperandos(p[1])
+
+def p_DCLARRAY_EJECUCION(p):
+	'''
+	DCLARRAY1 : LBRACKET IDENTIFICATOR1 RBRACKET
+	'''
+	dimensionadas_ARRAY()
+
+def p_DCLMATRIX_EJECUCION(p):
+	'''
+	DCLMATRIX1 : LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET
+	'''
+	dimensionadas_MATRIX()
+
+def p_DCLCUBE_EJECUCION(p):
+	'''
+	DCLCUBE1 : LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET
+	'''
+	dimensionadas_CUBE()
+
+def p_IDENTIFICATOR_EJECUCION(p):
+	'''
+	IDENTIFICATOR1 : NUMBER
+	'''
+	pushOperandos(int(p[1])*(-1))
+
+def p_IDENTIFICATOR_1_EJECUCION(p):
+	'''
+	IDENTIFICATOR1 : ID
+	'''
+	pushOperandos(p[1])
+
+def p_STATEMENTS_VAR(p):
 	'''
 	VAR : ID
-	| ID DCLARRAY
-	| ID DCLMATRIX
-	| ID DCLCUBE
 	'''
 	pushOperandos(buscar(p[1]))
+
+def p_STATEMENTS_VAR1(p):
+	'''
+	VAR : ID PUSH DCLARRAY1
+	| ID  PUSH DCLMATRIX1
+	| ID PUSH DCLCUBE1
+	'''
+
+def p_PUSH(p):
+	'''
+	PUSH :
+	'''
+	pushOperandos(buscar(p[-1]))
 
 def p_STATEMENTS_IF_ELSE1(p):
 	'''
@@ -365,12 +426,12 @@ def p_error(p):
 	print("Incorrect grammar\n", p)
 	print("Error in the line "+str(p.lineno))
 
-test = os.getcwd()+"\\test\\prueba11.txt"
+test = os.getcwd()+"\\test\\prueba12.txt"
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
 parser = yacc.yacc('SLR')
 result = parser.parse(cadena)
-#imprimirCuadruplos()
-#imprimirSymbolTable()
-ejecution()
+imprimirCuadruplos()
+imprimirSymbolTable()
+#ejecution()

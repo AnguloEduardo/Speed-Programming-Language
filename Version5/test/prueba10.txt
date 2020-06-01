@@ -6,29 +6,25 @@ program main
 	subprocedure taylor
 		let temp = b*b - 4*a*c;
 		if temp < 0 then
-			print("Raiz negativa");
+			print("Raiz cuadrada negativa");
 		else
 			while j <= temp do
 				let i = i + 0.1;
 				let j = i * i;
 			whend;
 			let x1 = i;
-			for j=0 to 9 do
-				let x2 = temp;
-				let x2 = x2 / x1;
-				let x2 = x2 + x1;
-				let x2 = x2 / 2;
+			for j=0 to 100 do
+				let x2 = (((temp / x1) + x1) / 2);
 				let x1 = x2;
 			next;
-			let temp = x2;
 		endif;
 	endsub;
 
 	subprocedure raiz
 		gosub .taylor;
-		if temp > 0 then
-			let r1 = (b*(0-1)+temp)/(2*a);
-			let r2 = (b*(0-1)-temp)/(2*a);
+		if temp >= 0 then
+			let r1 = (b*(0-1)+x2)/(2*a);
+			let r2 = (b*(0-1)-x2)/(2*a);
 			print("Raiz 1");
 			print(r1);
 			print("Raiz 2");

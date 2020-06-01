@@ -12,7 +12,11 @@ global saltos
 global ID
 global Tf
 global texto
+global dimID
+global dimFlag
 
+dimFlag = False
+dimID = 0
 Tf = 0
 ID = 0
 cont = 0
@@ -26,7 +30,37 @@ operando2 = []
 resultado = []
 temporales = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 listTemporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
-			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137]
+			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,
+			  139,140]
+
+def dimCarac(p,num):
+	global tableID
+	i = 1
+	if p == "array":
+		dim = (operandos.pop() * (-1))
+		while i <= num:
+			tableValue[len(tableID)-(num-i)-1] = [dim,len(dimValue)]
+			for x in range(dim):
+				dimValue.append(0)
+			i+=1
+	elif p == "matrix":
+		dim2 = (operandos.pop() * (-1))
+		dim = (operandos.pop() * (-1))
+		while i <= num:
+			tableValue[len(tableID)-(num-i)-1] = [dim,dim2,len(dimValue)]
+			for x in range(dim*dim2):
+				dimValue.append(0)
+			i+=1
+	else:
+		dim3 = (operandos.pop() * (-1))
+		dim2 = (operandos.pop() * (-1))
+		dim = (operandos.pop() * (-1))
+		m1 = dim2 * dim3
+		while i <= num:
+			tableValue[len(tableID)-(num-i)-1] = [dim,dim2,dim3,len(dimValue),m1]
+			for x in range(m1*dim):
+				dimValue.append(0)
+			i+=1
 
 def genCuadruplo(x):
 	global operando1
@@ -326,9 +360,152 @@ def spReturn():
 	operando2.append("--")
 	resultado.append("--")
 
+def dimensionadas_ARRAY():
+	global indexCuadruplo
+	global dimID
+	global cont
+	indexCuadruplo.append(cont)
+	cont+=1
+	s1 = operandos.pop()
+	dimID = operandos.pop()
+	carID = tableValue[dimID-1]
+	operandos.append(s1)
+	operando1.append(s1)
+	operando2.append(carID[0])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("+")
+	operando1.append(operandos.pop())
+	operando2.append(carID[1])
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1]+200)
+
+def dimensionadas_MATRIX():
+	global indexCuadruplo
+	global dimID
+	global cont
+	indexCuadruplo.append(cont)
+	cont+=1
+	s2 = operandos.pop()
+	s1 = operandos.pop()
+	dimID = operandos.pop()
+	carID = tableValue[dimID-1]
+	operandos.append(s1)
+	operando1.append(s1)
+	operando2.append(carID[0])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("*")
+	operando1.append(s1)
+	operando2.append(carID[1])
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(s2)
+	operando2.append(carID[1])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(operandos.pop())
+	operando2.append(s2)
+	operador.append("+")
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(operandos.pop())
+	operando2.append(carID[2])
+	operador.append("+")
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1]+200)
+
+def dimensionadas_CUBE():
+	global indexCuadruplo
+	global dimID
+	global cont
+	indexCuadruplo.append(cont)
+	cont+=1
+	s3 = operandos.pop()
+	s2 = operandos.pop()
+	s1 = operandos.pop()
+	dimID = operandos.pop()
+	carID = tableValue[dimID-1]
+	operandos.append(s1)
+	operando1.append(s1)
+	operando2.append(carID[0])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("*")
+	operando1.append(s1)
+	operando2.append(carID[4])
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(s2)
+	operando2.append(carID[1])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("*")
+	operando1.append(s2)
+	operando2.append(carID[2])
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(operandos.pop())
+	operando2.append(operandos.pop())
+	operador.append("+")
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(s3)
+	operando2.append(carID[2])
+	resultado.append("--")
+	operador.append("verficar")
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(operandos.pop())
+	operando2.append(s3)
+	operador.append("+")
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1])
+
+	indexCuadruplo.append(cont)
+	cont+=1
+	operando1.append(operandos.pop())
+	operando2.append(carID[3])
+	operador.append("+")
+	resultado.append(listTemporales.pop(0))
+	operandos.append(resultado[len(resultado)-1]+200)
+
 def imprimirCuadruplos():
 	cuadruplos = "\n".join("{5} {0:3} {5} {1:12} {5} {2:5} {5} {3:5} {5} {4:5} {5}"
 					.format(v, w, x, y, z, '|') for v, w, x, y, z, in zip(indexCuadruplo,
 					operador,operando1,operando2,resultado))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
 	print ("\n")
+	print ("\nLista de operandos:\n\n")
+	print (operandos)

@@ -10,7 +10,8 @@ program main
 	while a <> 0 do
 		let temp = a / 10;
 		let a = a / 10;
-		let temp = (temp - a) * 10 + 0.05;
+		let temp = (temp - a) * 10 + 0.005; #Error en decimales
+		print(temp);
 		let num = temp;
 		if num == 0 then
 			print("cero");

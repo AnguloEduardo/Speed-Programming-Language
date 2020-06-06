@@ -217,9 +217,8 @@ def p_OPREL(p):
 
 def p_OPERATOR(p):
 	'''
-	OPERATOR : ID
+	OPERATOR : VAR
 	'''
-	pushOperandos(buscar(p[1]))
 
 def p_OPERATOR1(p):
 	'''
@@ -325,7 +324,7 @@ def p_IDENTIFICATOR_1_EJECUCION(p):
 	'''
 	IDENTIFICATOR1 : ID
 	'''
-	pushOperandos(p[1])
+	pushOperandos(buscar(p[1]))
 
 def p_STATEMENTS_VAR(p):
 	'''
@@ -426,12 +425,12 @@ def p_error(p):
 	print("Incorrect grammar\n", p)
 	print("Error in the line "+str(p.lineno))
 
-test = os.getcwd()+"\\test\\prueba12.txt"
+test = os.getcwd()+"\\ProgramasPrueba\\prueba4.txt"
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
 parser = yacc.yacc('SLR')
 result = parser.parse(cadena)
-imprimirCuadruplos()
-imprimirSymbolTable()
-#ejecution()
+#imprimirCuadruplos()
+ejecution()
+#imprimirSymbolTable()

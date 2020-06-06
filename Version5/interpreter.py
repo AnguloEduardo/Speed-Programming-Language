@@ -27,16 +27,27 @@ def ejecution():
 		#----------Ejecuntando el input----------#
 		if operador[PC] == "INPUT":
 			print(texto[operando1[PC]])
-			tableValue[operando2[PC]-1] = int(input())
+			if operando2[PC] > 199:
+				dimValue[temporales[operando2[PC]-200]] = int(input())
+			elif tableType[operando2[PC]-1] == "word":
+				tableValue[operando2[PC]-1] = int(input())
+			else:
+				tableValue[operando2[PC]-1] = float(input())
 			PC+=1
 		#----------Ejecuntando el print----------#
 		elif operador[PC] == "PRINT":
 			if operando1[PC] == "--":
-				print(tableValue[operando2[PC]-1])
+				if operando2[PC] > 199:
+					print(dimValue[temporales[operando2[PC]-200]])
+				else:
+					print(tableValue[operando2[PC]-1])
 			elif operando2[PC] == "--":
 				print(texto[operando1[PC]])
 			else:
-				print(texto[operando1[PC]],tableValue[operando2[PC]-1])
+				if operando2[PC] > 199:
+					print(texto[operando1[PC]],dimValue[temporales[operando2[PC]-200]])
+				else:
+					print(texto[operando1[PC]],tableValue[operando2[PC]-1])
 			PC+=1
 		#----------Ejecuntando las operaciones aritmeticas y logicas----------#
 		elif ((operador[PC] == "+") or (operador[PC] == "-") or (operador[PC] == "*")
@@ -44,15 +55,20 @@ def ejecution():
 			or (operador[PC] == "<") or (operador[PC] == ">") or (operador[PC] == "<=")
 			or (operador[PC] == ">=") or (operador[PC] == "==") or (operador[PC] == "<>")):
 
-			if operando1[PC] > 99: #Revisando si es un temporal
+			#Revisando si es un temporal
+			if ((operando1[PC] > 99 ) & (operando1[PC] < 200)):
 				operando1value = temporales[operando1[PC]-100]
+			elif operando1[PC] > 199: #Revisando si es un dato dimensionado
+				operando1value = dimValue[temporales[operando1[PC]-200]]
 			elif operando1[PC] <= 0: #Revisando si es una constante
 				operando1value = operando1[PC]*(-1)
 			else: #Reemplazando el valor de la tabla de simbolos
 				operando1value = tableValue[operando1[PC]-1]
 
-			if operando2[PC] > 99: #Revisando si es un temporal
+			if ((operando2[PC] > 99) & (operando2[PC] < 200)): #Revisando si es un temporal
 				operando2value = temporales[operando2[PC]-100]
+			elif operando2[PC] > 199: #Revisando si es un dato dimensionado
+				operando2value = dimValue[temporales[operando2[PC]-200]]
 			elif operando2[PC] <= 0: #Revisando si es una constante
 				operando2value = operando2[PC]*(-1)
 			else: #Reemplazando el valor de la tabla de simbolos
@@ -179,15 +195,19 @@ def ejecution():
 						tableValue[resultado[PC]-1] = 0
 				PC+=1
 		elif operador[PC] == "=":
-			if operando2[PC] > 99: #Revisando si es un temporal
+			if ((operando2[PC] > 99) & (operando2[PC] < 200)): #Revisando si es un temporal
 				operando2value = temporales[operando2[PC]-100]
+			elif operando2[PC] > 199: #Revisando si es un dato dimensionado
+				operando2value = dimValue[temporales[operando2[PC]-200]]
 			elif operando2[PC] <= 0: #Revisando si es una constante
 				operando2value = operando2[PC]*(-1)
 			else: #Reemplazando el valor de la tabla de simbolos
 				operando2value = tableValue[operando2[PC]-1]
 
-			if operando1[PC] > 99: #Revisando si es un temporal
+			if ((operando1[PC] > 99) & (operando1[PC] < 200)): #Revisando si es un temporal
 				temporales[operando1[PC]-100] = operando2value
+			elif operando1[PC] > 199: #Revisando si es un dato dimensionado
+				dimValue[temporales[operando1[PC]-200]] = operando2value
 			else: #Reemplazando el valor de la tabla de simbolos
 				if tableType[operando1[PC]-1] == "word":
 					tableValue[operando1[PC]-1] = int(operando2value)
@@ -208,6 +228,17 @@ def ejecution():
 			PC = saltosPC.pop()
 		elif operador[PC] == "CLS":
 			os.system("cls")
+			PC+=1
+		elif operador[PC] == "verficar":
+			if operando1[PC] <= 0: #Revisando si es una constante
+				operando1value = operando1[PC]*(-1)
+			else: #Reemplazando el valor de la tabla de simbolos
+				operando1value = tableValue[operando1[PC]-1]
+			operando2value = operando2[PC]*(-1)
+			if ((operando1value < 0) or (operando1value >= operando2value)):
+				print("Error en dimension")
+				finprograma = False
+				print(PC)
 			PC+=1
 		elif operador[PC] == "finprograma":
 			finprograma = False

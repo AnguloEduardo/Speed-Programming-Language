@@ -62,6 +62,7 @@ def imprimirSymbolTable():
 	global repetido
 	global tableType
 	global tableID
+	'''
 	if not repetido:
 		symboltable ="\n".join("{3} {0:3} {3} {1:8s} {3} {2:6s} {3}".format(w, x, y, '|')
 			for w, x, y in zip(indice, tableID, tableType))
@@ -74,6 +75,8 @@ def imprimirSymbolTable():
 		tableID = []
 		tableType = []
 		print ("\nError in the symbol table")
+	'''
+	print (tableValue)
 
 def buscar(id):
 	return int(tableID.index(id)+1)

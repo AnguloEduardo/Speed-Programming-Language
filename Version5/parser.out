@@ -46,7 +46,7 @@ Rule 40    OPREL -> GT
 Rule 41    OPREL -> GTE
 Rule 42    OPREL -> NE
 Rule 43    OPREL -> EQUAL
-Rule 44    OPERATOR -> ID
+Rule 44    OPERATOR -> VAR
 Rule 45    OPERATOR -> NUMBER
 Rule 46    OPERATOR -> FLOATNUMBER
 Rule 47    IDLIST -> ID
@@ -110,7 +110,7 @@ GOSUB                : 20
 GT                   : 40
 GTE                  : 41
 GTGT                 : 14
-ID                   : 1 8 20 44 47 48 58 63 64 65 66 67 75
+ID                   : 1 8 20 47 48 58 63 64 65 66 67 75
 IF                   : 16
 INPUT                : 14
 LBRACKET             : 54 55 55 56 56 56 59 60 60 61 61 61
@@ -180,7 +180,7 @@ TIPO                 : 4
 TL                   : 31 32 33 34
 TO1                  : 19
 VALUE                : 13
-VAR                  : 12 14 29 78
+VAR                  : 12 14 29 44 78
 VARIABLE             : 1 4
 WHILE1               : 17
 program              : 0
@@ -539,19 +539,24 @@ state 22
     (35) TL -> . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     EL                             shift and go to state 46
     TL                             shift and go to state 47
     FL                             shift and go to state 48
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 23
 
@@ -563,19 +568,24 @@ state 23
     (35) TL -> . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     EL                             shift and go to state 54
     TL                             shift and go to state 47
     FL                             shift and go to state 48
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 24
 
@@ -828,6 +838,17 @@ state 40
     MINUS           reduce using rule 64 (VAR -> ID .)
     TIMES           reduce using rule 64 (VAR -> ID .)
     DIVIDE          reduce using rule 64 (VAR -> ID .)
+    LT              reduce using rule 64 (VAR -> ID .)
+    LTE             reduce using rule 64 (VAR -> ID .)
+    GT              reduce using rule 64 (VAR -> ID .)
+    GTE             reduce using rule 64 (VAR -> ID .)
+    NE              reduce using rule 64 (VAR -> ID .)
+    EQUAL           reduce using rule 64 (VAR -> ID .)
+    THEN            reduce using rule 64 (VAR -> ID .)
+    ENDO            reduce using rule 64 (VAR -> ID .)
+    OR              reduce using rule 64 (VAR -> ID .)
+    NOT             reduce using rule 64 (VAR -> ID .)
+    AND             reduce using rule 64 (VAR -> ID .)
     RPARENT         reduce using rule 64 (VAR -> ID .)
     LBRACKET        reduce using rule 68 (PUSH -> .)
 
@@ -943,37 +964,42 @@ state 50
     (35) TL -> . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     EL                             shift and go to state 86
     TL                             shift and go to state 47
     FL                             shift and go to state 48
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 51
 
-    (44) OPERATOR -> ID .
+    (44) OPERATOR -> VAR .
 
-    LT              reduce using rule 44 (OPERATOR -> ID .)
-    LTE             reduce using rule 44 (OPERATOR -> ID .)
-    GT              reduce using rule 44 (OPERATOR -> ID .)
-    GTE             reduce using rule 44 (OPERATOR -> ID .)
-    NE              reduce using rule 44 (OPERATOR -> ID .)
-    EQUAL           reduce using rule 44 (OPERATOR -> ID .)
-    THEN            reduce using rule 44 (OPERATOR -> ID .)
-    DO              reduce using rule 44 (OPERATOR -> ID .)
-    ENDO            reduce using rule 44 (OPERATOR -> ID .)
-    OR              reduce using rule 44 (OPERATOR -> ID .)
-    NOT             reduce using rule 44 (OPERATOR -> ID .)
-    AND             reduce using rule 44 (OPERATOR -> ID .)
-    RPARENT         reduce using rule 44 (OPERATOR -> ID .)
+    LT              reduce using rule 44 (OPERATOR -> VAR .)
+    LTE             reduce using rule 44 (OPERATOR -> VAR .)
+    GT              reduce using rule 44 (OPERATOR -> VAR .)
+    GTE             reduce using rule 44 (OPERATOR -> VAR .)
+    NE              reduce using rule 44 (OPERATOR -> VAR .)
+    EQUAL           reduce using rule 44 (OPERATOR -> VAR .)
+    THEN            reduce using rule 44 (OPERATOR -> VAR .)
+    DO              reduce using rule 44 (OPERATOR -> VAR .)
+    ENDO            reduce using rule 44 (OPERATOR -> VAR .)
+    OR              reduce using rule 44 (OPERATOR -> VAR .)
+    NOT             reduce using rule 44 (OPERATOR -> VAR .)
+    AND             reduce using rule 44 (OPERATOR -> VAR .)
+    RPARENT         reduce using rule 44 (OPERATOR -> VAR .)
 
 
 state 52
@@ -1298,18 +1324,23 @@ state 75
     (35) TL -> . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     TL                             shift and go to state 114
     FL                             shift and go to state 48
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 76
 
@@ -1344,30 +1375,40 @@ state 78
     (34) TL -> TL AND . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     FL                             shift and go to state 115
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 79
 
     (36) FL -> OPERATOR OPREL . OPERATOR
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     OPERATOR                       shift and go to state 116
+    VAR                            shift and go to state 51
 
 state 80
 
@@ -1516,19 +1557,24 @@ state 89
     (35) TL -> . FL
     (36) FL -> . OPERATOR OPREL OPERATOR
     (37) FL -> . LPARENT EL RPARENT
-    (44) OPERATOR -> . ID
+    (44) OPERATOR -> . VAR
     (45) OPERATOR -> . NUMBER
     (46) OPERATOR -> . FLOATNUMBER
+    (64) VAR -> . ID
+    (65) VAR -> . ID PUSH DCLARRAY1
+    (66) VAR -> . ID PUSH DCLMATRIX1
+    (67) VAR -> . ID PUSH DCLCUBE1
 
     LPARENT         shift and go to state 50
-    ID              shift and go to state 51
     NUMBER          shift and go to state 52
     FLOATNUMBER     shift and go to state 53
+    ID              shift and go to state 40
 
     EL                             shift and go to state 119
     TL                             shift and go to state 47
     FL                             shift and go to state 48
     OPERATOR                       shift and go to state 49
+    VAR                            shift and go to state 51
 
 state 90
 
@@ -1759,6 +1805,17 @@ state 106
     MINUS           reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
     TIMES           reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
     DIVIDE          reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    LT              reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    LTE             reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    GT              reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    GTE             reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    NE              reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    EQUAL           reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    THEN            reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    ENDO            reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    OR              reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    NOT             reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
+    AND             reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
     RPARENT         reduce using rule 65 (VAR -> ID PUSH DCLARRAY1 .)
 
 
@@ -1774,6 +1831,17 @@ state 107
     MINUS           reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
     TIMES           reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
     DIVIDE          reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    LT              reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    LTE             reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    GT              reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    GTE             reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    NE              reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    EQUAL           reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    THEN            reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    ENDO            reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    OR              reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    NOT             reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
+    AND             reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
     RPARENT         reduce using rule 66 (VAR -> ID PUSH DCLMATRIX1 .)
 
 
@@ -1789,6 +1857,17 @@ state 108
     MINUS           reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
     TIMES           reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
     DIVIDE          reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    LT              reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    LTE             reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    GT              reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    GTE             reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    NE              reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    EQUAL           reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    THEN            reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    ENDO            reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    OR              reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    NOT             reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
+    AND             reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
     RPARENT         reduce using rule 67 (VAR -> ID PUSH DCLCUBE1 .)
 
 
@@ -2343,6 +2422,17 @@ state 147
     MINUS           reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
     TIMES           reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
     DIVIDE          reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LT              reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LTE             reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GT              reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GTE             reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NE              reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    EQUAL           reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    THEN            reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    ENDO            reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    OR              reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NOT             reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
+    AND             reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
     RPARENT         reduce using rule 59 (DCLARRAY1 -> LBRACKET IDENTIFICATOR1 RBRACKET .)
     LBRACKET        shift and go to state 152
 
@@ -2527,6 +2617,17 @@ state 161
     MINUS           reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     TIMES           reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     DIVIDE          reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LT              reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LTE             reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GT              reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GTE             reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NE              reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    EQUAL           reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    THEN            reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    ENDO            reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    OR              reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NOT             reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    AND             reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     RPARENT         reduce using rule 60 (DCLMATRIX1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     LBRACKET        shift and go to state 164
 
@@ -2582,6 +2683,17 @@ state 167
     MINUS           reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     TIMES           reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     DIVIDE          reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LT              reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    LTE             reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GT              reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    GTE             reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NE              reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    EQUAL           reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    THEN            reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    ENDO            reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    OR              reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    NOT             reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
+    AND             reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
     RPARENT         reduce using rule 61 (DCLCUBE1 -> LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET LBRACKET IDENTIFICATOR1 RBRACKET .)
 
 WARNING: 

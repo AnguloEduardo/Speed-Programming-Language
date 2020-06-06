@@ -1,7 +1,7 @@
 program prueba
 
 	dim i,j,n as word;
-	dim g,h,m as cube[2][2][2];
+	dim g,h,m as cube[5][6][7];
 
 
 	for i=0 to 1 do

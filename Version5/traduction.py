@@ -28,7 +28,7 @@ operador = []
 operando1 = []
 operando2 = []
 resultado = []
-temporales = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+temporales = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 listTemporales = [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
 			  119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,
 			  139,140]
@@ -82,11 +82,15 @@ def genCuadruplo(x):
 		resultado.append(listTemporales.pop(0))
 		operandos.append(resultado[resultado.__len__() - 1])
 
-	if operando1[operando1.__len__() - 1] > 99:
+	if operando1[operando1.__len__() - 1] > 99 and operando1[operando1.__len__() - 1] < 200:
 		listTemporales.append(operando1[operando1.__len__() - 1])
+	elif operando1[operando1.__len__() - 1] > 199:
+		listTemporales.append(operando1[operando1.__len__() - 1]-100)
 
-	if operando2[operando2.__len__() - 1] > 99:
+	if operando2[operando2.__len__() - 1] > 99 and operando2[operando2.__len__() - 1] < 200:
 		listTemporales.append(operando2[operando2.__len__() - 1])
+	elif operando2[operando2.__len__() - 1] > 199:
+		listTemporales.append(operando2[operando2.__len__() - 1]-100)
 
 def pushOperandos(x):
 	global operandos
@@ -249,8 +253,16 @@ def finFor():
 	operador.append("+")
 	operando1.append(ID)
 	operando2.append(-1)
-	resultado.append(ID)
+	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[resultado.__len__() - 1])
+	indexCuadruplo.append(cont)
+	cont+=1
+	operador.append("=")
+	operando1.append(ID)
+	operando2.append(operandos.pop())
+	resultado.append("--")
+	#operandos.append(resultado[resultado.__len__() - 1])
+	listTemporales.append(operando2[operando2.__len__() - 1])
 	indexCuadruplo.append(cont)
 	cont+=1
 	retorno = saltos.pop()
@@ -369,19 +381,18 @@ def dimensionadas_ARRAY():
 	s1 = operandos.pop()
 	dimID = operandos.pop()
 	carID = tableValue[dimID-1]
-	operandos.append(s1)
 	operando1.append(s1)
-	operando2.append(carID[0])
+	operando2.append(carID[0]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operador.append("+")
-	operando1.append(operandos.pop())
-	operando2.append(carID[1])
+	operando1.append(s1)
+	operando2.append(carID[1]*(-1))
 	resultado.append(listTemporales.pop(0))
-	operandos.append(resultado[len(resultado)-1]+200)
+	operandos.append(resultado[len(resultado)-1]+100)
 
 def dimensionadas_MATRIX():
 	global indexCuadruplo
@@ -393,9 +404,8 @@ def dimensionadas_MATRIX():
 	s1 = operandos.pop()
 	dimID = operandos.pop()
 	carID = tableValue[dimID-1]
-	operandos.append(s1)
 	operando1.append(s1)
-	operando2.append(carID[0])
+	operando2.append(carID[0]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
@@ -403,14 +413,14 @@ def dimensionadas_MATRIX():
 	cont+=1
 	operador.append("*")
 	operando1.append(s1)
-	operando2.append(carID[1])
+	operando2.append(carID[1]*(-1))
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operando1.append(s2)
-	operando2.append(carID[1])
+	operando2.append(carID[1]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
@@ -421,14 +431,18 @@ def dimensionadas_MATRIX():
 	operador.append("+")
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
+	if operando1[operando1.__len__()-1] > 99:
+		listTemporales.append(operando1[operando1.__len__()-1])
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operando1.append(operandos.pop())
-	operando2.append(carID[2])
+	operando2.append(carID[2]*(-1))
 	operador.append("+")
 	resultado.append(listTemporales.pop(0))
-	operandos.append(resultado[len(resultado)-1]+200)
+	operandos.append(resultado[len(resultado)-1]+100)
+	if operando1[operando1.__len__()-1] > 99:
+		listTemporales.append(operando1[operando1.__len__()-1])
 
 def dimensionadas_CUBE():
 	global indexCuadruplo
@@ -441,9 +455,8 @@ def dimensionadas_CUBE():
 	s1 = operandos.pop()
 	dimID = operandos.pop()
 	carID = tableValue[dimID-1]
-	operandos.append(s1)
 	operando1.append(s1)
-	operando2.append(carID[0])
+	operando2.append(carID[0]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
@@ -451,14 +464,14 @@ def dimensionadas_CUBE():
 	cont+=1
 	operador.append("*")
 	operando1.append(s1)
-	operando2.append(carID[4])
+	operando2.append(carID[4]*(-1))
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operando1.append(s2)
-	operando2.append(carID[1])
+	operando2.append(carID[1]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
@@ -466,7 +479,7 @@ def dimensionadas_CUBE():
 	cont+=1
 	operador.append("*")
 	operando1.append(s2)
-	operando2.append(carID[2])
+	operando2.append(carID[2]*(-1))
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
 
@@ -477,11 +490,15 @@ def dimensionadas_CUBE():
 	operador.append("+")
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
+	if operando1[operando1.__len__()-1] > 99:
+		listTemporales.append(operando1[operando1.__len__()-1])
+	if operando2[operando2.__len__()-1] > 99:
+		listTemporales.append(operando2[operando2.__len__()-1])
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operando1.append(s3)
-	operando2.append(carID[2])
+	operando2.append(carID[2]*(-1))
 	resultado.append("--")
 	operador.append("verficar")
 
@@ -492,14 +509,18 @@ def dimensionadas_CUBE():
 	operador.append("+")
 	resultado.append(listTemporales.pop(0))
 	operandos.append(resultado[len(resultado)-1])
+	if operando1[operando1.__len__()-1] > 99:
+		listTemporales.append(operando1[operando1.__len__()-1])
 
 	indexCuadruplo.append(cont)
 	cont+=1
 	operando1.append(operandos.pop())
-	operando2.append(carID[3])
+	operando2.append(carID[3]*(-1))
 	operador.append("+")
 	resultado.append(listTemporales.pop(0))
-	operandos.append(resultado[len(resultado)-1]+200)
+	operandos.append(resultado[len(resultado)-1]+100)
+	if operando1[operando1.__len__()-1] > 99:
+		listTemporales.append(operando1[operando1.__len__()-1])
 
 def imprimirCuadruplos():
 	cuadruplos = "\n".join("{5} {0:3} {5} {1:12} {5} {2:5} {5} {3:5} {5} {4:5} {5}"
@@ -507,5 +528,3 @@ def imprimirCuadruplos():
 					operador,operando1,operando2,resultado))
 	print ("\nCuadruplos generados:\n\n"+cuadruplos+"\n")
 	print ("\n")
-	print ("\nLista de operandos:\n\n")
-	print (operandos)

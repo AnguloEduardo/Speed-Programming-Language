@@ -360,7 +360,7 @@ def p_error(p):
 	print("Incorrect grammar\n", p)
 	print("Error in the line "+str(p.lineno))
 
-test = os.getcwd()+"\\test\\prueba2.txt"
+test = os.getcwd()+"\\test\\prueba7.txt"
 fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
